@@ -15,33 +15,48 @@
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
 
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 
 </head>
 <body>
 <div class="manual-reader manual-container manual-search-reader">
 {{template "widgets/header.tpl" .}}
+
     <div class="container manual-body">
-        <div class="search-head">
-            <strong class="search-title">{{i18n .Lang "project.prj_space_list"}}</strong>
-        </div>
         <div class="row">
-            <div class="hide tag-container-outer" style="border: 0;margin-top: 0;padding: 5px 15px;min-height: 200px;">
-                <div class="attach-list" id="ItemsetsList">
+            <div class="tag-container-outer modern-items-container" style="border: 0;margin-top: 0;padding: 5px 15px;min-height: 200px;">
+                <div class="attach-list modern-items-grid" id="ItemsetsList">
                 {{range $index,$item := .Lists}}
-                    <a href="{{urlfor "ItemsetsController.List" ":key" $item.ItemKey}}" class="ui-card" title="{{$item.ItemName}}">
-                    <div class="header">{{$item.ItemName}}</div>
-                        <div class="description">{{i18n $.Lang "project.prj_amount"}}：{{$item.BookNumber}} &nbsp; {{i18n $.Lang "project.creator"}}：{{$item.CreateName}}<br/> {{i18n $.Lang "project.create_time"}}：{{$item.CreateTimeString}}</div>
+                    <a href="{{urlfor "ItemsetsController.List" ":key" $item.ItemKey}}" class="modern-items-card" title="{{$item.ItemName}}">
+                        <div class="items-card-icon">
+                            <i class="fa fa-folder"></i>
+                        </div>
+                        <div class="items-card-header">{{$item.ItemName}}</div>
+                        <div class="items-card-description">
+                            <span class="items-meta">
+                                <i class="fa fa-book"></i>
+                                {{i18n $.Lang "project.prj_amount"}}：{{$item.BookNumber}}
+                            </span>
+                            <span class="items-meta">
+                                <i class="fa fa-user"></i>
+                                {{i18n $.Lang "project.creator"}}：{{$item.CreateName}}
+                            </span>
+                            <span class="items-meta">
+                                <i class="fa fa-calendar"></i>
+                                {{i18n $.Lang "project.create_time"}}：{{$item.CreateTimeString}}
+                            </span>
+                        </div>
                     </a>
                 {{else}}
-                    <div class="search-empty">
-                        <img src="{{cdnimg "/static/images/search_empty.png"}}" class="empty-image">
-                        <span class="empty-text">{{i18n .Lang "project.no_projct_space"}}</span>
+                    <div class="items-empty-state">
+                        <i class="fa fa-folder-open-o empty-icon"></i>
+                        <p class="empty-text">{{i18n .Lang "project.no_projct_space"}}</p>
                     </div>
                 {{end}}
                 </div>
             </div>
 
-            <nav class="pagination-container">
+            <nav class="pagination-container modern-pagination">
                 {{if gt .TotalPages 1}}
                     {{.PageHtml}}
                 {{end}}

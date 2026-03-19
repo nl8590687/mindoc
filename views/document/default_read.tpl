@@ -28,6 +28,7 @@
     <link href="{{cdncss "/static/prismjs/prismjs.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/katex/katex.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/css/print.css" "version"}}" media="print" rel="stylesheet">
+    <link href="{{cdncss "/static/css/markdown-modern-ui.css" "version"}}" rel="stylesheet">
 
     <script type="text/javascript">
         window.IS_ENABLE_IFRAME = '{{conf "enable_iframe" }}' === 'true';
@@ -38,7 +39,7 @@
     <script type="text/javascript">window.book={"identify": '{{.Model.Identify}}'};</script>
     <style>
         .btn-mobile {
-            position: absolute;
+            position: absolute !important;
             right: 10px;
             top: 10px;
         }
@@ -47,7 +48,7 @@
             display: none;
         }
 
-        @media screen and (min-width: 840px) {
+        @media screen and (min-width: 980px) {
             .btn-mobile{
                 display: none;
             }
@@ -64,7 +65,7 @@
     </style>
 </head>
 <body>
-<div class="m-manual manual-mode-view manual-reader">
+<div class="m-manual manual-mode-view manual-reader modern-doc-reader">
     <header class="navbar navbar-static-top manual-head" role="banner">
         <div class="container-fluid">
             <div class="navbar-header pull-left manual-title">
@@ -220,7 +221,7 @@
                         <div class="comment-post">
                             <form class="form" id="commentForm" action="{{urlfor "CommentController.Create"}}" method="post">
                                 <label class="enter w-textarea textarea-full">
-                                    <textarea class="textarea-input form-control" name="content" id="commentContent" placeholder="文明上网，理性发言" style="height: 72px;"></textarea>
+                                    <textarea class="textarea-input form-control modern-form-control" name="content" id="commentContent" placeholder="文明上网，理性发言" style="height: 72px;"></textarea>
                                     <input type="hidden" name="doc_id" id="doc_id" value="{{.DocumentId}}">
                                 </label>
                                 <div class="pull-right">
@@ -246,7 +247,7 @@
 <!-- 分享项目 -->
 <div class="modal fade" id="shareProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modern-doc-reader">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "doc.share_project"}}</h4>
@@ -275,7 +276,7 @@
 <!-- 下载项目 -->
 <div class="modal fade" id="downloadBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modern-doc-reader">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "doc.share_project"}}</h4>

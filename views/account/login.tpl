@@ -14,126 +14,152 @@
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
     <style>
         .line {
             height:0;
-            border-top: 1px solid #cccccc;
+            border-top: 1px solid #e8e8e8;
             text-align:center;
-            margin: 14px 0;
+            margin: 24px 0;
         }
         .line > .text {
             position:relative;
             top:-12px;
             background-color:#fff;
-            padding: 5px;
+            padding: 5px 16px;
+            color: #8c8c8c;
+            font-size: 14px;
         }
         .icon-box {
             align-items: center;
             justify-content: center;
             display: flex;
             display: -webkit-flex;
+            gap: 16px;
         }
 
         .icon {
             box-sizing: border-box;
-            display: inline-block;
-            padding: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
             border-radius: 50%;
             cursor: pointer;
-            margin: 0 5px;
+            width: 56px;
+            height: 56px;
+            transition: all 0.3s ease;
+            border: 2px solid #f0f0f0;
+        }
+        .icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .icon-disable {
-            background-color: #cccccc;
+            background-color: #f5f5f5;
             cursor: not-allowed;
+            opacity: 0.6;
         }
         .icon-disable:hover {
-            background-color: #bbbbbb;
+            transform: none;
+            box-shadow: none;
         }
 
         .icon > img {
-            height: 24px;
+            height: 28px;
         }
     </style>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{cdnjs "/static/jquery/1.12.4/jquery.min.js"}}"></script>
 </head>
-<body class="manual-container">
-<header class="navbar navbar-static-top smart-nav navbar-fixed-top manual-header" role="banner">
-    <div class="container">
-        <div class="navbar-header col-sm-12 col-md-6 col-lg-5">
-            <a href="{{.BaseUrl}}" class="navbar-brand">{{.SITE_NAME}}</a>
+<body class="manual-container login-page-body">
+<div class="login-page-wrapper">
+    <header class="navbar navbar-static-top smart-nav navbar-fixed-top manual-header" role="banner">
+        <div class="container">
+            <div class="navbar-header col-sm-12 col-md-6 col-lg-5">
+                <a href="{{.BaseUrl}}" class="navbar-brand modern-brand">{{.SITE_NAME}}</a>
+            </div>
         </div>
-    </div>
-</header>
-<div class="container manual-body">
-    <div class="row login">
-        <div class="login-body">
-            <form role="form" method="post">
-            {{ .xsrfdata }}
-                <h3 class="text-center">{{i18n .Lang "common.login"}}</h3>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <input type="text" class="form-control" placeholder="{{i18n .Lang "common.email"}} / {{i18n .Lang "common.username"}}" name="account" id="account" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-lock"></i>
-                        </div>
-                        <input type="password" class="form-control" placeholder="{{i18n .Lang "common.password"}}" name="password" id="password" autocomplete="off">
-                    </div>
-                </div>
-                {{if .ENABLED_CAPTCHA }}
-                {{if ne .ENABLED_CAPTCHA "false"}}
-                <div class="form-group">
-                    <div class="input-group" style="float: left;width: 195px;">
-                        <div class="input-group-addon">
-                            <i class="fa fa-check-square"></i>
-                        </div>
-                        <input type="text" name="code" id="code" class="form-control" style="width: 150px" maxlength="5" placeholder="{{i18n .Lang "common.captcha"}}" autocomplete="off">&nbsp;
-                    </div>
-                    <img id="captcha-img" style="width: 140px;height: 40px;display: inline-block;float: right" src="{{urlfor "AccountController.Captcha"}}" onclick="this.src='{{urlfor "AccountController.Captcha"}}?key=login&t='+(new Date()).getTime();" title={{i18n .Lang "message.click_to_change"}}>
-                    <div class="clearfix"></div>
-                </div>
-                {{end}}
-                {{end}}
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="is_remember" value="yes"> {{i18n .Lang "common.keep_login"}}
-                    </label>
-                    <a href="{{urlfor "AccountController.FindPassword" }}" style="display: inline-block;float: right">{{i18n .Lang "common.forgot_password"}}</a>
-                </div>
-                <div class="form-group">
-                    <button type="button" id="btn-login" class="btn btn-success" style="width: 100%"  data-loading-text="{{i18n .Lang "message.logging_in"}}" autocomplete="off">{{i18n .Lang "common.login"}}</button>
-                </div>
-                {{if .ENABLED_REGISTER}}
-                    {{if ne .ENABLED_REGISTER "false"}}
+    </header>
+
+    <div class="login-page-content">
+        <div class="login-hero">
+            <div class="login-hero-inner">
+                <p class="login-hero-subtitle">{{.site_description}}</p>
+            </div>
+        </div>
+
+        <div class="container manual-body">
+            <div class="row login">
+                <div class="login-body modern-login-body">
+                    <form role="form" method="post">
+                    {{ .xsrfdata }}
+                        <h3 class="text-center login-title">{{i18n .Lang "common.login"}}</h3>
                         <div class="form-group">
-                            {{i18n .Lang "message.no_account_yet"}} <a href="{{urlfor "AccountController.Register" }}" title={{i18n .Lang "common.register"}}>{{i18n .Lang "common.register"}}</a>
+                            <div class="input-group modern-input-group">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control modern-form-control" placeholder="{{i18n .Lang "common.email"}} / {{i18n .Lang "common.username"}}" name="account" id="account" autocomplete="off">
+                            </div>
                         </div>
-                    {{end}}
-                {{end}}
-                <div class="third-party">
-                    <div class="line">
-                        <span class="text">{{i18n .Lang "common.third_party_login"}}</span>
-                    </div>
-                    <div class="icon-box">
-                        <div class="icon {{ if .CanLoginDingTalk }}btn-success{{else}}icon-disable{{end}}" title="{{i18n .Lang "common.dingtalk_login"}}" data-url="{{ .dingtalk_login_url }}">
-                            <img alt="{{i18n .Lang "common.dingtalk_login"}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAA9hJREFUaEPNmVvoZ1MUxz/fPOBR8uJBya0QXmRqhsZtasq4xQMP7h5GyiR5MIkHlOQBDyaEcmvGrTBCYjDuKbmUW3jyQF7kEsrSd9pHx+9/fufss8/5/85v1e7/6/9ba+31OXutfdbeP9EgEfE6cChwN3CXpL+a9Jbhf2oBWJ+++wN42DCSvliGoOsx5ADU9R8zjKRXlwWkL0AV905gO7BD0p9TwswDuAG4NSOwrxPIdkmfZeiPrjIP4Fjg456z7TCMpGd62g1SbwSwx4h4DzihwLvBnV6G+a7AvpdJG8BW4JZe3v6v/HsN5OUBflpN2wCOBj4daeLdLvi0Kj+O5HOPm7kAKY2eAzaNOOHPgH3uGZL+Geq7C8AvM7+VV0O8gxnkeUlvlE7QCpBW4QrgYmBd6SQZdh8ATwFPSvo+Q/8/lU6ASjMizksgZ/SZoKfub4ZIIC/m2GYD1ECOAs5MY03OJIU6HwIPSLqvzb6rBo4A3MB9A3wOvAXslvR+Sq8TU5EbyLqrIR8BWyR5J1shnSsQEd8CBzfYurhdfIbyOBXYmMZhq0CyTtLbs35zAO4HXMg58mgqRgPdNDKMt92zSgAuAB7Pib5B5wfAUG7Dz01Qha7YJenk3gAp118BTi+deSS7OyVdVwrg4A0xpWyU9FIRQFqFmwemwBD4JyRdWLQL1Y0iYiqINdXWXbwClWFEXAVcCxwy5JH2sPWtyJZ5+p3baJNhRBwAHAfsm8Y+M3/3ArwD1Yfb876NoVtvP/25B6MigJm02h/wEdTDUNXnHg95rupWSbe1OSoGSPVwDnDMGJE2+PAlgZ++G7y5MgTAbUNWx1gIeJmkh7psiwHS1upj4vldkxR8/7Qkt++dMghglSB+AU6R5C60UwYDJIgx3w83Ssq+DRkFIEG4oO9oeT/8BPhK0nXj1GuSN4HTJP3d+eiTwmgACWI/YENq/KoXnS/IdlYHkogw5IqmLMWzSdILucFbb1SAnIkjwoegkxp0d82zb2qjK92FAkTEQcCXgN/cOfIrcHzb7xKLBvDW6FuHXLlI0iNtyosGuB24PjN6/yJ0TZfuogFeA1YcCxuCfEfS2q7gF1rEEXE4cGBDUN5W3dVW4rxfK+mTpQJoCiYiLgFm+53LJT2YE/xCV2AOgG/drqx9d68kH5iyZaE1MBtVRLhl9lWlJTvv634mA4iII9N1peNx3q/PbeCWBeBq4J4UzGZJ27LzpqY45Qo8C5wNbJO0uST4SYs4ItydfpVSJ7v7nAWdZAVST+Tr+g2S3i19+pOtQERcCuxdmveTF3FEeL8vzvs6wL8iyC9AZnHsagAAAABJRU5ErkJggg==">
+                        <div class="form-group">
+                            <div class="input-group modern-input-group">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                                <input type="password" class="form-control modern-form-control" placeholder="{{i18n .Lang "common.password"}}" name="password" id="password" autocomplete="off">
+                            </div>
                         </div>
-                        <div class="icon {{ if .CanLoginWorkWeixin }}btn-success{{else}}icon-disable{{end}}" title="{{i18n .Lang "common.wecom_login"}}" data-url="{{ .workweixin_login_url }}">
-                            <img alt="{{i18n .Lang "common.wecom_login"}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABE9JREFUaEPtmVvIpWMUx3//IkkYhgkXTBiFHEPjVCYXJscJMyOHMEUZN0NOuWEuJCPHhBnqk0MuhmYaoswFQoYoTAqNHBqH0IyRK9Jfa/e80/u93/vt5917v/vb31ez6m1fPOv0f9Z6nrWetcUMJ81w/xkIgO3DgTOBY4H9St8fwPfAD+l3o6T/hrFZPQOwfSFwMXBGcryJX/8CLwFvAgFmexOhJjyNASTHbwQuaqK4C8/PwDPAakm/DKgrn0K25wKPAIsGNVaRL4DcJyki1Bd1jYDt84ExYE5f2psJvQ8s6TcakwKwfTuwqpkPA3NtAxZI+qJXTbUAbJ8DvN2rshb4T5H0aS96JgCwfRTwdS9KWuY9UFJcw41oHADbewMbgIjAqGiDpEuaGq8CeBK4qanwEPlWSHqsif6dAGwfCsQh2reJ4JB5vgPmS/otZ6cM4C7g/pzAFK4vl/RUzl4ZQOz+cTmBKVx/VdLlOXsdACl9ovGaTrRd0v45hwoAZwHv5ZhHsD5L0o5udgsAV6ZucQQ+djU5T9KWJgCmwwF+AViTimg0d1GLfpW0qQmA61LTNqoIrJW0pB/jRQqdCnzcj4IWZDZLOj5dJvsApwOHAW9JilddVyoA7AX8CeyWExjC+kpJ9yYAH6SXXmHmaElfZVMoCX8GnDAEB3Mqo41+x/bVQJyDMq2TdGlTALEL9+SsDWG9ABAvvnUV/f8AR0jaOpndciU+GPgEOGQITtapjPy+W9LLKQNmRd4DcR7LdK2k57MAkpKpiMJK4MP4JP2V7M4HFsZZsB1ZsLg08YhrNNZqC1q1nR5mFOIwLpI07rFk+/o0NFgj6Y5ip20HiOWpHoxJWlYXhboX2Q2poLSZSTskRYp0yHZcm2enbynwmqSYNU0g20VWzJH0e5VhsjfxQ8CtLSJYJmnM9pHAw5XZUgy5TuvWMqRmMyYj8eA6Js2V3pW0vttU4nXgghZAbJIUxSl2vu6MNWqbbb8IXFXyp6O3G4DYrY1ADLYGoS2S5iUAMemovrezDxfbJwN104oFucFWvNCi0RuEduZ/zazpR+AkSTEXmpRs3wY8WGHYJml2DkDc0VcM4n2SvUXSoykKNwNPAF8CjwPfRCXOAIih8MISz0fA05KeywGI+zru6DZoD0lRWceRbadOOEBOuOttr0jX7OfA+phwSwoAHcoBiOnxQTXeB7ComnsCB6RvduV3MxDft0C0AlslvVEDoHAwClZEJhzspJTtE9OEcG2q2hMGXjkAsTtlioP0gKRQ2BrZXg3E6D4onI+UCTC7A+cW3WqdwRyA4tYIx6NSxoupdUr/9ESlDocL+htYWhe1sgM5APHAmNvP1LhXlLZfAS6ryD0rKTqDSanxPzS9OtQrv+1rgGrXuUrSnTMCQDq05bMQF8ViST/NGAAJRLQd53U7uI3PQK9pMAr+aXMG+gW/C0C/O9eW3K4ItLWT/eqZ8RH4H4Zge30AMjOdAAAAAElFTkSuQmCC">
+                        {{if .ENABLED_CAPTCHA }}
+                        {{if ne .ENABLED_CAPTCHA "false"}}
+                        <div class="form-group captcha-group">
+                            <div class="input-group modern-input-group captcha-input">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-check-square"></i>
+                                </div>
+                                <input type="text" name="code" id="code" class="form-control modern-form-control" maxlength="5" placeholder="{{i18n .Lang "common.captcha"}}" autocomplete="off">
+                            </div>
+                            <img id="captcha-img" class="modern-captcha-img" src="{{urlfor "AccountController.Captcha"}}" onclick="this.src='{{urlfor "AccountController.Captcha"}}?key=login&t='+(new Date()).getTime();" title={{i18n .Lang "message.click_to_change"}}>
+                            <div class="clearfix"></div>
                         </div>
-                    </div>
+                        {{end}}
+                        {{end}}
+                        <div class="checkbox modern-checkbox">
+                            <label>
+                                <input type="checkbox" name="is_remember" value="yes"> {{i18n .Lang "common.keep_login"}}
+                            </label>
+                            <a href="{{urlfor "AccountController.FindPassword" }}" class="forgot-link">{{i18n .Lang "common.forgot_password"}}</a>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="btn-login" class="btn modern-login-btn" data-loading-text="{{i18n .Lang "message.logging_in"}}" autocomplete="off">{{i18n .Lang "common.login"}}</button>
+                        </div>
+                        {{if .ENABLED_REGISTER}}
+                            {{if ne .ENABLED_REGISTER "false"}}
+                                <div class="form-group register-prompt">
+                                    {{i18n .Lang "message.no_account_yet"}} <a href="{{urlfor "AccountController.Register" }}" title={{i18n .Lang "common.register"}} class="register-link">{{i18n .Lang "common.register"}}</a>
+                                </div>
+                            {{end}}
+                        {{end}}
+                        <div class="third-party">
+                            <div class="line">
+                                <span class="text">{{i18n .Lang "common.third_party_login"}}</span>
+                            </div>
+                            <div class="icon-box">
+                                <div class="icon {{ if .CanLoginDingTalk }}btn-success{{else}}icon-disable{{end}}" title="{{i18n .Lang "common.dingtalk_login"}}" data-url="{{ .dingtalk_login_url }}">
+                                    <img alt="{{i18n .Lang "common.dingtalk_login"}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAA9hJREFUaEPNmVvoZ1MUxz/fPOBR8uJBya0QXmRqhsZtasq4xQMP7h5GyiR5MIkHlOQBDyaEcmvGrTBCYjDuKbmUW3jyQF7kEsrSd9pHx+9/fufss8/5/85v1e7/6/9ba+31OXutfdbeP9EgEfE6cChwN3CXpL+a9Jbhf2oBWJ+++wN42DCSvliGoOsx5ADU9R8zjKRXlwWkL0AV905gO7BD0p9TwswDuAG4NSOwrxPIdkmfZeiPrjIP4Fjg456z7TCMpGd62g1SbwSwx4h4DzihwLvBnV6G+a7AvpdJG8BW4JZe3v6v/HsN5OUBflpN2wCOBj4daeLdLvi0Kj+O5HOPm7kAKY2eAzaNOOHPgH3uGZL+Geq7C8AvM7+VV0O8gxnkeUlvlE7QCpBW4QrgYmBd6SQZdh8ATwFPSvo+Q/8/lU6ASjMizksgZ/SZoKfub4ZIIC/m2GYD1ECOAs5MY03OJIU6HwIPSLqvzb6rBo4A3MB9A3wOvAXslvR+Sq8TU5EbyLqrIR8BWyR5J1shnSsQEd8CBzfYurhdfIbyOBXYmMZhq0CyTtLbs35zAO4HXMg58mgqRgPdNDKMt92zSgAuAB7Pib5B5wfAUG7Dz01Qha7YJenk3gAp118BTi+deSS7OyVdVwrg4A0xpWyU9FIRQFqFmwemwBD4JyRdWLQL1Y0iYiqINdXWXbwClWFEXAVcCxwy5JH2sPWtyJZ5+p3baJNhRBwAHAfsm8Y+M3/3ArwD1Yfb876NoVtvP/25B6MigJm02h/wEdTDUNXnHg95rupWSbe1OSoGSPVwDnDMGJE2+PAlgZ++G7y5MgTAbUNWx1gIeJmkh7psiwHS1upj4vldkxR8/7Qkt++dMghglSB+AU6R5C60UwYDJIgx3w83Ssq+DRkFIEG4oO9oeT/8BPhK0nXj1GuSN4HTJP3d+eiTwmgACWI/YENq/KoXnS/IdlYHkogw5IqmLMWzSdILucFbb1SAnIkjwoegkxp0d82zb2qjK92FAkTEQcCXgN/cOfIrcHzb7xKLBvDW6FuHXLlI0iNtyosGuB24PjN6/yJ0TZfuogFeA1YcCxuCfEfS2q7gF1rEEXE4cGBDUN5W3dVW4rxfK+mTpQJoCiYiLgFm+53LJT2YE/xCV2AOgG/drqx9d68kH5iyZaE1MBtVRLhl9lWlJTvv634mA4iII9N1peNx3q/PbeCWBeBq4J4UzGZJ27LzpqY45Qo8C5wNbJO0uST4SYs4ItydfpVSJ7v7nAWdZAVST+Tr+g2S3i19+pOtQERcCuxdmveTF3FEeL8vzvs6wL8iyC9AZnHsagAAAABJRU5ErkJggg==">
+                                </div>
+                                <div class="icon {{ if .CanLoginWorkWeixin }}btn-success{{else}}icon-disable{{end}}" title="{{i18n .Lang "common.wecom_login"}}" data-url="{{ .workweixin_login_url }}">
+                                    <img alt="{{i18n .Lang "common.wecom_login"}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAABE9JREFUaEPtmVvIpWMUx3//IkkYhgkXTBiFHEPjVCYXJscJMyOHMEUZN0NOuWEuJCPHhBnqk0MuhmYaoswFQoYoTAqNHBqH0IyRK9Jfa/e80/u93/vt5917v/vb31ez6m1fPOv0f9Z6nrWetcUMJ81w/xkIgO3DgTOBY4H9St8fwPfAD+l3o6T/hrFZPQOwfSFwMXBGcryJX/8CLwFvAgFmexOhJjyNASTHbwQuaqK4C8/PwDPAakm/DKgrn0K25wKPAIsGNVaRL4DcJyki1Bd1jYDt84ExYE5f2psJvQ8s6TcakwKwfTuwqpkPA3NtAxZI+qJXTbUAbJ8DvN2rshb4T5H0aS96JgCwfRTwdS9KWuY9UFJcw41oHADbewMbgIjAqGiDpEuaGq8CeBK4qanwEPlWSHqsif6dAGwfCsQh2reJ4JB5vgPmS/otZ6cM4C7g/pzAFK4vl/RUzl4ZQOz+cTmBKVx/VdLlOXsdACl9ovGaTrRd0v45hwoAZwHv5ZhHsD5L0o5udgsAV6ZucQQ+djU5T9KWJgCmwwF+AViTimg0d1GLfpW0qQmA61LTNqoIrJW0pB/jRQqdCnzcj4IWZDZLOj5dJvsApwOHAW9JilddVyoA7AX8CeyWExjC+kpJ9yYAH6SXXmHmaElfZVMoCX8GnDAEB3Mqo41+x/bVQJyDMq2TdGlTALEL9+SsDWG9ABAvvnUV/f8AR0jaOpndciU+GPgEOGQITtapjPy+W9LLKQNmRd4DcR7LdK2k57MAkpKpiMJK4MP4JP2V7M4HFsZZsB1ZsLg08YhrNNZqC1q1nR5mFOIwLpI07rFk+/o0NFgj6Y5ip20HiOWpHoxJWlYXhboX2Q2poLSZSTskRYp0yHZcm2enbynwmqSYNU0g20VWzJH0e5VhsjfxQ8CtLSJYJmnM9pHAw5XZUgy5TuvWMqRmMyYj8eA6Js2V3pW0vttU4nXgghZAbJIUxSl2vu6MNWqbbb8IXFXyp6O3G4DYrY1ADLYGoS2S5iUAMemovrezDxfbJwN104oFucFWvNCi0RuEduZ/zazpR+AkSTEXmpRs3wY8WGHYJml2DkDc0VcM4n2SvUXSoykKNwNPAF8CjwPfRCXOAIih8MISz0fA05KeywGI+zru6DZoD0lRWceRbadOOEBOuOttr0jX7OfA+phwSwoAHcoBiOnxQTXeB7ComnsCB6RvduV3MxDft0C0AlslvVEDoHAwClZEJhzspJTtE9OEcG2q2hMGXjkAsTtlioP0gKRQ2BrZXg3E6D4onI+UCTC7A+cW3WqdwRyA4tYIx6NSxoupdUr/9ESlDocL+htYWhe1sgM5APHAmNvP1LhXlLZfAS6ryD0rKTqDSanxPzS9OtQrv+1rgGrXuUrSnTMCQDq05bMQF8ViST/NGAAJRLQd53U7uI3PQK9pMAr+aXMG+gW/C0C/O9eW3K4ItLWT/eqZ8RH4H4Zge30AMjOdAAAAAElFTkSuQmCC">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+            <div class="clearfix"></div>
         </div>
     </div>
-    <div class="clearfix"></div>
 </div>
 {{template "widgets/footer.tpl" .}}
 <!-- Include all compiled plugins (below), or include individual files as needed -->

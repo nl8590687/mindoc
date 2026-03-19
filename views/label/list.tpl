@@ -15,6 +15,7 @@
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
 
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 </head>
 <body>
 <div class="manual-reader manual-container manual-search-reader">

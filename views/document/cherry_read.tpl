@@ -26,6 +26,7 @@
     <link href="{{cdncss "/static/prismjs/prismjs.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/katex/katex.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/css/print.css" "version"}}" media="print" rel="stylesheet">
+    <link href="{{cdncss "/static/css/markdown-modern-ui.css" "version"}}" rel="stylesheet">
 
     <script type="text/javascript">
         window.IS_ENABLE_IFRAME = '{{conf "enable_iframe" }}' === 'true';
@@ -36,7 +37,7 @@
     <script type="text/javascript">window.book={"identify":"{{.Model.Identify}}"};</script>
     <style>
         .btn-mobile {
-            position: absolute;
+            position: absolute !important;
             right: 10px;
             top: 10px;
         }
@@ -45,7 +46,7 @@
             display: none;
         }
 
-        @media screen and (min-width: 840px) {
+        @media screen and (min-width: 980px) {
             .btn-mobile{
                 display: none;
             }
@@ -53,7 +54,7 @@
     </style>
 </head>
 <body>
-<div class="m-manual manual-mode-view manual-reader">
+<div class="m-manual manual-mode-view manual-reader modern-doc-reader">
     <header class="navbar navbar-static-top manual-head" role="banner">
         <div class="container-fluid">
             <div class="navbar-header pull-left manual-title">
@@ -110,7 +111,7 @@
                 <div class="tab-navg">
                     <span data-mode="view" class="navg-item active"><i class="fa fa-align-justify"></i><b class="text">{{i18n .Lang "doc.contents"}}</b></span>
                     <span data-mode="search" class="navg-item"><i class="fa fa-search"></i><b class="text">{{i18n .Lang "doc.search"}}</b></span>
-                    <span id="handlerMenuShow" style="float: right;display: inline-block;padding: 5px;cursor: pointer;">
+                    <span id="handlerMenuShow" class="handler-menu-show" style="float: right;display: inline-block;padding: 5px;cursor: pointer;">
                         <i class="fa fa-angle-left" style="font-size: 20px;padding-right: 5px;"></i>
                         <span class="pull-right" style="padding-top: 4px;">{{i18n .Lang "doc.expand"}}</span>
                     </span>
@@ -162,7 +163,7 @@
         <div class="manual-right">
             <div id="view_container" class="manual-article {{if eq .Model.Editor "cherry_markdown"}} cherry cherry-markdown {{.MarkdownTheme}} {{end}}">
                 <div class="article-content">
-                    <div class="article-head {{if eq .Model.Editor "cherry_markdown"}} markdown-article-head {{end}}">
+                    <div class="article-head {{if eq .Model.Editor "cherry_markdown"}} markdown-article-head {{end}}" style="padding: 20px 20px !important;">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-2">
@@ -206,7 +207,7 @@
                         <div class="comment-post">
                             <form class="form" id="commentForm" action="{{urlfor "CommentController.Create"}}" method="post">
                                 <label class="enter w-textarea textarea-full">
-                                    <textarea class="textarea-input form-control" name="content" id="commentContent" placeholder="文明上网，理性发言" style="height: 72px;"></textarea>
+                                    <textarea class="textarea-input form-control modern-form-control" name="content" id="commentContent" placeholder="文明上网，理性发言" style="height: 72px;"></textarea>
                                     <input type="hidden" name="doc_id" id="doc_id" value="{{.DocumentId}}">
                                 </label>
                                 <div class="pull-right">
@@ -232,7 +233,7 @@
 <!-- 分享项目 -->
 <div class="modal fade" id="shareProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modern-doc-reader">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "doc.share_project"}}</h4>
@@ -261,7 +262,7 @@
 <!-- 下载项目 -->
 <div class="modal fade" id="downloadBookModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modern-doc-reader">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "doc.share_project"}}</h4>

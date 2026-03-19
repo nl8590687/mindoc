@@ -183,7 +183,7 @@ body .scrollbar-track-color {
 
 /*********************************/
 .manual-body {
-    margin-top: 53px;
+    margin-top: 13px;
 }
 
 .manual-body .page-left {
@@ -457,6 +457,7 @@ body .scrollbar-track-color {
 
 .manual-search-reader .manual-body {
     margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 .manual-search-reader .search-head {
@@ -1171,7 +1172,7 @@ body .scrollbar-track-color {
     color: #2b85ae
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 980px) {
     .manual-body .page-left {
         display: none;
     }

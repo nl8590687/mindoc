@@ -540,14 +540,14 @@ table>tbody>tr:hover {
 }
 
 .manual-article .article-content {
-    min-width: 980px;
-    max-width: 90%;
+    /*min-width: 980px;*/
+    max-width: 100%;
     padding: 10px 20px;
     margin-left: auto !important;
     margin-right: auto !important
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 980px) {
     .manual-article .article-content {
         min-width: inherit;
     }
@@ -1202,7 +1202,7 @@ table>tbody>tr:hover {
 
 
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 980px) {
 
     .m-manual.manual-reader {
         font-size: 12px;

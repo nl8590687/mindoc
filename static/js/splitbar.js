@@ -1,7 +1,7 @@
 $(function () {
     var splitBar = {
         // 设置当前屏幕为 840px 时将分割条隐藏
-        maxWidth: 840,
+        maxWidth: 980,
 
         // 父元素选择器
         parentSelector: '.manual-body',
@@ -20,7 +20,7 @@ $(function () {
                         position: absolute;\
                         user-select: none;\
                         cursor: col-resize;\
-                        left: 275px;\
+                        left: 295px;\
                         height: 100%;\
                         display: block;\
                         width: 3px;">\
@@ -74,16 +74,16 @@ $(function () {
         inMaxWidthReset: function () {
             $('#manual-vsplitbar').css('display', 'none');
             $('.m-manual.manual-reader .manual-right').css('left', '0');
-            $('.manual-left').css('width', '280px');
+            $('.manual-left').css('width', '300px');
         },
 
         /**
          * 屏幕大于 840px，重置左右窗口
          */
         outMaxWidthReset: function () {
-            $('.manual-right').css('left', '279px');
-            $('.manual-left').css('width', '279px');
-            $('#manual-vsplitbar').css('left', '275px').css('display', 'block');
+            $('.manual-right').css('left', '299px');
+            $('.manual-left').css('width', '299px');
+            $('#manual-vsplitbar').css('left', '295px').css('display', 'block');
         }
     }
 

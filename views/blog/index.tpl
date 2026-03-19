@@ -13,114 +13,90 @@
 
     <!-- Bootstrap -->
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
-
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
-    <link href="{{cdncss "/static/editor.md/lib/sequence/sequence-diagram-min.css"}}" rel="stylesheet">
-    <link href="{{cdncss "/static/css/kancloud.css" "version"}}" rel="stylesheet">
-    <link href="{{cdncss "/static/editor.md/css/editormd.preview.css"}}" rel="stylesheet">
-    <link href="{{cdncss "/static/css/markdown.preview.css" "version"}}" rel="stylesheet">
-    <link href="{{cdncss (print "/static/editor.md/lib/highlight/styles/" .HighlightStyle ".css") "version"}}" rel="stylesheet">
-    <link href="{{cdncss "/static/katex/katex.min.css"}}" rel="stylesheet">
-    <link href="{{cdncss "/static/css/print.css"}}" media="print" rel="stylesheet">
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
     <style type="text/css">
-        .header{
-            min-height: 1rem;
-            font-size: 26px;
-            font-weight: 400;
-            display: block;
-            margin: 20px auto;
-        }
-        .blog-meta{
-            display: inline-block;
-        }
-        .blog-meta>.item{
-            display: inline-block;
-            color: #666666;
-            vertical-align: middle;
-        }
-
-        .blog-footer{
-            margin: 25px auto;
-            /*border-top: 1px solid #E5E5E5;*/
-            padding: 20px 1px;
-            line-height: 35px;
-        }
-        .blog-footer span{
-            margin-right: 8px;
-            padding: 6px 8px;
-            font-size: 12px;
-            border: 1px solid #e3e3e3;
-            color: #4d4d4d
-        }
-        .blog-footer a:hover{
-            color: #ca0c16;
-        }
         .footer{
             margin-top: 0;
-        }
-        .user_img img {
-            display: block;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            -o-object-fit: cover;
-            object-fit: cover;
-            overflow: hidden;
         }
     </style>
 </head>
 <body>
 <div class="manual-reader manual-container manual-search-reader">
 {{template "widgets/header.tpl" .}}
-    <div class="container manual-body">
-        <div class="search-head" style="border-bottom-width: 1px;">
-            <h1 class="header">
-               {{.Model.BlogTitle}}
-            </h1>
-            <div class="blog-meta">
-                <div class="item user_img"><img src="{{cdnimg .Model.MemberAvatar}}" align="{{.Model.CreateName}}"> </div>
-                <div class="item">&nbsp;{{.Model.CreateName}}</div>
-                <div class="item">{{i18n .Lang "blog.posted_on"}}</div>
-                <div class="item">{{date_format .Model.Created "2006-01-02 15:04:05"}}</div>
-                <div class="item">{{.Model.ModifyRealName}}</div>
-                <div class="item">{{i18n .Lang "blog.modified_on"}}</div>
-                <div class="item">{{date_format .Model.Modified "2006-01-02 15:04:05"}}</div>
-                {{if eq .Member.MemberId .Model.MemberId}}
-                    <div class="item"><a href='{{urlfor "BlogController.ManageEdit" ":id" .Model.BlogId}}' title="{{i18n .Lang "blog.edit_blog"}}"><i class="fa fa-edit"></i> {{i18n .Lang "common.edit"}}</a></div>
-                {{end}}
+
+    <!-- Blog Detail Hero Section -->
+    <div class="blog-detail-hero-section">
+        <div class="container">
+            <div class="blog-detail-hero-content">
+                <h1 class="blog-detail-title">{{.Model.BlogTitle}}</h1>
+                <div class="blog-detail-meta">
+                    <span class="blog-meta-item">
+                        <img src="{{cdnimg .Model.MemberAvatar}}" alt="{{.Model.CreateName}}" class="blog-author-avatar">
+                        <span class="blog-author-name">{{.Model.CreateName}}</span>
+                    </span>
+                    <span class="blog-meta-item">
+                        <i class="fa fa-calendar-o"></i>
+                        {{i18n .Lang "blog.posted_on"}} {{date_format .Model.Created "2006-01-02 15:04:05"}}
+                    </span>
+
+                    <span class="blog-meta-item">
+                        <i class="fa fa-pencil-square-o"></i>
+                        {{.Model.ModifyRealName}} {{i18n .Lang "blog.modified_on"}} {{date_format .Model.Modified "2006-01-02 15:04:05"}}
+                    </span>
+
+                    {{if eq .Member.MemberId .Model.MemberId}}
+                    <span class="blog-meta-item blog-edit-item">
+                        <a href='{{urlfor "BlogController.ManageEdit" ":id" .Model.BlogId}}' title="{{i18n .Lang "blog.edit_blog"}}">
+                            <i class="fa fa-edit"></i> {{i18n .Lang "common.edit"}}
+                        </a>
+                    </span>
+                    {{end}}
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="container manual-body">
         <div class="row">
-            <div class="article-body  markdown-body editormd-preview-container content">
+            <div class="article-body markdown-body editormd-preview-container content modern-article-body">
                 {{.Content}}
                 {{if .Model.AttachList}}
-                <div class="attach-list"><strong>{{i18n .Lang "doc.attachment"}}</strong><ul>
-                {{range $index,$item := .Model.AttachList}}
-                <li><a href="{{$item.HttpPath}}" title="{{$item.FileName}}">{{$item.FileName}}</a> </li>
-                {{end}}
-                </ul>
+                <div class="modern-attach-list">
+                    <div class="attach-header">
+                        <i class="fa fa-paperclip"></i>
+                        <strong>{{i18n .Lang "doc.attachment"}}</strong>
+                    </div>
+                    <ul class="attach-items">
+                    {{range $index,$item := .Model.AttachList}}
+                    <li class="attach-item">
+                        <i class="fa fa-file-o"></i>
+                        <a href="{{$item.HttpPath}}" title="{{$item.FileName}}">{{$item.FileName}}</a>
+                    </li>
+                    {{end}}
+                    </ul>
+                </div>
                 {{end}}
             </div>
         </div>
-        <div class="row blog-footer">
-            <p>
-                <span>{{i18n .Lang "blog.prev"}}</span>
-            {{if .Previous}}
-                <a href="{{urlfor "BlogController.Index" ":id" .Previous.BlogId}}" title="{{.Previous.BlogTitle}}">{{.Previous.BlogTitle}}
-                </a>
-            {{else}}
-               {{i18n .Lang "blog.no"}}
-            {{end}}
-            </p>
-            <p>
-                <span>{{i18n .Lang "blog.next"}}</span>
-            {{if .Next}}
-                <a href="{{urlfor "BlogController.Index" ":id" .Next.BlogId}}" title="{{.Next.BlogTitle}}">{{.Next.BlogTitle}}</a>
-            {{else}}
-                {{i18n .Lang "blog.no"}}
-            {{end}}
-            </p>
+        <div class="row modern-blog-footer">
+            <div class="blog-nav-item">
+                <span class="blog-nav-label"><i class="fa fa-angle-left"></i> {{i18n .Lang "blog.prev"}}</span>
+                {{if .Previous}}
+                <a href="{{urlfor "BlogController.Index" ":id" .Previous.BlogId}}" title="{{.Previous.BlogTitle}}" class="blog-nav-link">{{.Previous.BlogTitle}}</a>
+                {{else}}
+                <span class="blog-nav-none">{{i18n .Lang "blog.no"}}</span>
+                {{end}}
+            </div>
+            <div class="blog-nav-item blog-nav-next">
+                <span class="blog-nav-label">{{i18n .Lang "blog.next"}} <i class="fa fa-angle-right"></i></span>
+                {{if .Next}}
+                <a href="{{urlfor "BlogController.Index" ":id" .Next.BlogId}}" title="{{.Next.BlogTitle}}" class="blog-nav-link">{{.Next.BlogTitle}}</a>
+                {{else}}
+                <span class="blog-nav-none">{{i18n .Lang "blog.no"}}</span>
+                {{end}}
+            </div>
         </div>
     </div>
 {{template "widgets/footer.tpl" .}}

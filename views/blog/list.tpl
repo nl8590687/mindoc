@@ -11,6 +11,7 @@
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 
     <style type="text/css">
         .footer{margin-top: 0;}
@@ -20,33 +21,44 @@
             color: #fff!important;
             font-weight: 400;
         }
-    </style>
+        </style>
 </head>
 <body>
 <div class="manual-reader manual-container manual-search-reader">
 {{template "widgets/header.tpl" .}}
+
     <div class="container manual-body">
         <div class="row">
-            <div class="manual-list">
+            <div class="manual-list modern-blog-list">
             {{range $index,$item := .Lists}}
-                <div class="search-item">
-                    <div class="title">{{if eq $item.BlogStatus "password"}}<span class="label">{{i18n $.Lang "blog.encrypt"}}</span>{{end}} <a href="{{urlfor "BlogController.Index" ":id" $item.BlogId}}" title="{{$item.BlogTitle}}">{{$item.BlogTitle}}</a> </div>
-                    <div class="description">
-                    {{$item.BlogExcerpt}}
-                    </div>
-                    {{/*<div class="site">{{urlfor "BlogController.Index" ":id" $item.BlogId}}</div>*/}}
-                    <div class="source">
-                        <span class="item">{{i18n $.Lang "blog.author"}}：{{$item.CreateName}}</span>
-                        <span class="item">{{i18n $.Lang "blog.update_time"}}：{{date_format  $item.Modified "2006-01-02 15:04:05"}}</span>
+                <div class="modern-blog-item">
+                    <div class="blog-item-wrapper">
+                        <div class="blog-item-header">
+                            {{if eq $item.BlogStatus "password"}}<span class="label modern-label"><i class="fa fa-lock"></i> {{i18n $.Lang "blog.encrypt"}}</span>{{end}}
+                            <a href="{{urlfor "BlogController.Index" ":id" $item.BlogId}}" title="{{$item.BlogTitle}}" class="blog-title">{{$item.BlogTitle}}</a>
+                        </div>
+                        <div class="blog-description">
+                            {{$item.BlogExcerpt}}
+                        </div>
+                        <div class="blog-source">
+                            <span class="blog-meta-item">
+                                <i class="fa fa-user-circle-o"></i>
+                                {{i18n $.Lang "blog.author"}}：{{$item.CreateName}}
+                            </span>
+                            <span class="blog-meta-item">
+                                <i class="fa fa-clock-o"></i>
+                                {{i18n $.Lang "blog.update_time"}}：{{date_format  $item.Modified "2006-01-02 15:04:05"}}
+                            </span>
+                        </div>
                     </div>
                 </div>
             {{else}}
-                <div class="search-empty">
-                    <img src="{{cdnimg "/static/images/search_empty.png"}}" class="empty-image">
-                    <span class="empty-text">{{i18n $.Lang "blog.no_blog"}}</span>
+                <div class="blog-empty-state">
+                    <i class="fa fa-file-text-o empty-icon"></i>
+                    <p class="empty-text">{{i18n $.Lang "blog.no_blog"}}</p>
                 </div>
             {{end}}
-                <nav class="pagination-container">
+                <nav class="pagination-container modern-pagination">
                 {{.PageHtml}}
                 </nav>
                 <div class="clearfix"></div>

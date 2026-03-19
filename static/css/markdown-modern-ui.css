@@ -1,0 +1,786 @@
+
+/********** Modern Document Reader Styles **********/
+.modern-doc-reader .manual-head {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: none;
+    height: 54px;
+    backdrop-filter: blur(10px);
+    z-index: 900;
+}
+
+.modern-doc-reader .manual-head::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.modern-doc-reader .manual-head .navbar {
+    border: none;
+    margin-bottom: 0;
+}
+
+.modern-doc-reader .manual-head .container-fluid {
+    padding-top: 0;
+    padding-bottom: 12px;
+    position: relative;
+    z-index: 1;
+}
+
+.modern-doc-reader .manual-head .navbar-header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.modern-doc-reader .manual-head .manual-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modern-doc-reader .manual-head .book-title {
+    /*color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.3px;
+}
+
+.modern-doc-reader .manual-head .book-title:hover {
+    color: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1px);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modern-doc-reader .manual-head .slidebar {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-right: 14px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modern-doc-reader .manual-head .slidebar:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.modern-doc-reader .manual-head .slidebar i {
+    font-size: 16px;
+}
+
+.modern-doc-reader .manual-head .btn {
+    border-radius: 26px !important;
+    padding: 8px 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+    letter-spacing: 0.2px !important;
+    position: relative;
+    overflow: hidden !important;
+}
+
+.modern-doc-reader .manual-head .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.modern-doc-reader .manual-head .btn:hover::before {
+    left: 100%;
+}
+
+.modern-doc-reader .manual-head .btn-default {
+    background: rgba(255, 255, 255, 0.22) !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(10px);
+}
+
+.modern-doc-reader .manual-head .btn-default:hover {
+    background: rgba(255, 255, 255, 0.35) !important;
+    color: black !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18) !important;
+    border-color: #ccc !important;
+}
+
+.modern-doc-reader .manual-head .btn-danger {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 16px rgba(255, 107, 107, 0.35) !important;
+}
+
+.modern-doc-reader .manual-head .btn-danger:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #e03131 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 24px rgba(255, 107, 107, 0.45) !important;
+}
+
+.modern-doc-reader .manual-head .btn-success {
+    background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 16px rgba(81, 207, 102, 0.35) !important;
+}
+
+.modern-doc-reader .manual-head .btn-success:hover {
+    background: linear-gradient(135deg, #40c057 0%, #2f9e44 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 24px rgba(81, 207, 102, 0.45) !important;
+}
+
+.modern-doc-reader .manual-head .btn-primary {
+    background: linear-gradient(135deg, #339af0 0%, #1c7ed6 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 16px rgba(51, 154, 240, 0.35) !important;
+}
+
+.modern-doc-reader .manual-head .btn-primary:hover {
+    background: linear-gradient(135deg, #228be6 0%, #1971c2 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 24px rgba(51, 154, 240, 0.45) !important;
+}
+
+.modern-doc-reader .manual-head .manual-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modern-doc-reader .manual-left {
+    background: #ffffff;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+    border-radius: 0 16px 16px 0;
+    overflow: visible;
+    width: 299px;
+}
+
+.manual-right {
+    left: 300px;
+}
+
+.modern-doc-reader .manual-tab {
+    border-right: none;
+    background: #ffffff;
+}
+
+.modern-doc-reader .tab-navg {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #e9ecef;
+    padding: 2px 4px;
+}
+
+.modern-doc-reader .tab-navg .navg-item {
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 600;
+    color: #595959;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+}
+
+.modern-doc-reader .tab-navg .navg-item:hover {
+    background: #ffffff;
+    color: #262626;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.modern-doc-reader .tab-navg .navg-item.active {
+    background: #667eea;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.jstree-default .jstree-wholerow-clicked {
+    background: linear-gradient(135deg, #667eea 0%, #667eea 100%) !important;
+    color: #ffffff;
+}
+
+.jstree-wholerow-hovered {
+    background: #10af88 !important;
+}
+
+.tab-item {
+    top: 41px !important;
+}
+
+.modern-doc-reader .tab-navg .navg-item i {
+    margin-right: 6px;
+}
+
+.modern-doc-reader .tab-navg #handlerMenuShow {
+    float: right;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px !important;
+    cursor: pointer;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+    color: #595959;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.modern-doc-reader .tab-navg #handlerMenuShow:hover {
+    background: #ffffff;
+    color: #667eea;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modern-doc-reader .tab-navg #handlerMenuShow i {
+    font-size: 20px !important;
+    padding-right: 5px !important;
+    color: inherit;
+}
+
+.modern-doc-reader .tab-navg #handlerMenuShow span {
+    padding-top: 0 !important;
+    color: inherit;
+}
+
+.modern-doc-reader .tab-util {
+    padding: 8px;
+}
+
+.m-manual .manual-tab .tab-util {
+    right: -34px !important;
+}
+
+.modern-doc-reader .manual-fullscreen-switch {
+    padding: 6px 10px;
+}
+
+.manual-fullscreen-switch .open:hover,
+.manual-fullscreen-switch .close:hover {
+    background-color: #10af88 !important;
+}
+
+.manual-fullscreen-switch .open,
+.manual-fullscreen-switch .close {
+    background-color: #667eea !important;
+}
+
+.modern-doc-reader .manual-catalog {
+    padding: 16px 12px;
+    background: #ffffff;
+}
+
+.modern-doc-reader .catalog-list li {
+    margin-bottom: 2px;
+}
+
+.modern-doc-reader .catalog-list a {
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #595959;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.modern-doc-reader .catalog-list a:hover {
+    color: #262626;
+    transform: translateX(4px);
+}
+
+.modern-doc-reader .catalog-list a.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+}
+
+.modern-doc-reader .tab-wrap {
+    background: #ffffff;
+}
+
+.modern-doc-reader .tab-item {
+    background: #ffffff;
+}
+
+.modern-doc-reader .manual-catalog {
+    padding: 16px 0;
+    background: #ffffff;
+    min-height: 200px;
+}
+
+.modern-doc-reader .read-book-preview {
+    max-height: calc(100vh - 190px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modern-doc-reader .read-book-preview::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modern-doc-reader .read-book-preview::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.modern-doc-reader .read-book-preview::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+.modern-doc-reader .read-book-preview::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+.modern-doc-reader .m-copyright {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-top: 1px solid #e9ecef;
+    padding: 20px 16px;
+    text-align: center;
+}
+
+.modern-doc-reader .m-copyright p {
+    margin: 0;
+    color: #8c8c8c;
+    font-size: 13px;
+}
+
+.modern-doc-reader .m-copyright a {
+    color: #667eea;
+    font-weight: 500;
+}
+
+.modern-doc-reader .m-copyright #view_count {
+    color: #595959;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.modern-doc-reader .manual-search {
+    padding: 16px 12px;
+    background: #ffffff;
+}
+
+.modern-doc-reader .search-container {
+    background: #ffffff;
+}
+
+.modern-doc-reader .search-form {
+    margin-bottom: 16px;
+}
+
+.modern-doc-reader .search-form .form-group {
+    position: relative;
+    margin: 0;
+}
+
+.modern-doc-reader .search-form input[type="search"],
+.modern-doc-reader .search-form .form-control {
+    border-radius: 24px !important;
+    border: 2px solid #e9ecef !important;
+    padding: 12px 50px 12px 20px !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    background: #f8f9fa !important;
+}
+
+.modern-doc-reader .search-form input[type="search"]:focus,
+.modern-doc-reader .search-form .form-control:focus {
+    border-color: #667eea !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1) !important;
+    outline: none !important;
+}
+
+.modern-doc-reader .search-form .btn-search {
+    position: absolute !important;
+    right: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: #667eea !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    color: #ffffff !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+}
+
+.modern-doc-reader .search-form .btn-search:hover {
+    transform: translateY(-50%) scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+.modern-doc-reader .search-result {
+    width: 299px !important;
+    padding: 8px 0;
+}
+
+.modern-doc-reader .search-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #8c8c8c;
+}
+
+.modern-doc-reader .search-empty i {
+    font-size: 48px;
+    color: #d9d9d9;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.modern-doc-reader .search-empty .text {
+    font-size: 14px;
+    color: #8c8c8c;
+}
+
+.modern-doc-reader .search-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modern-doc-reader .search-list li {
+    margin-bottom: 8px;
+}
+
+.modern-doc-reader .search-list a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: #262626;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border: 1px solid transparent;
+}
+
+.search-list a.active {
+    background: #ffffff;
+    background: linear-gradient(to bottom, #667eea 0%, #667eea 100%) !important;
+    color: #ffffff;
+}
+
+.m-manual .manual-search .search-list a:hover {
+    background: #10af88;
+    border-color: #10af88;
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+.modern-doc-reader .search-list a.active {
+    background: #667eea !important;
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.modern-doc-reader .article-head {
+    padding: 40px 20px;
+}
+
+.modern-doc-reader .article-head h1 {
+    font-weight: 700;
+    color: #262626;
+    font-size: 32px;
+}
+
+.modern-doc-reader .article-body {
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.modern-doc-reader .m-comment {
+    max-width: 900px;
+    margin: 40px auto 0;
+    padding: 0 60px;
+}
+
+.modern-doc-reader .comment-item {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    border: 1px solid #f0f0f0;
+}
+
+.modern-doc-reader .comment-item .name {
+    font-weight: 600;
+    color: #262626;
+}
+
+.modern-doc-reader .comment-item .date {
+    color: #8c8c8c;
+    font-size: 13px;
+}
+
+.modern-doc-reader .comment-post {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #f0f0f0;
+    margin-top: 24px;
+}
+
+.modern-doc-reader .comment-post .modern-form-control {
+    border-radius: 8px;
+    border: 1px solid #d9d9d9;
+    padding: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.modern-doc-reader .comment-post .modern-form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.modern-doc-reader .view-backtop {
+    background: #667eea;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.modern-doc-reader .view-backtop:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+}
+
+.modern-doc-reader .view-backtop i {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .modern-doc-reader .article-body {
+        padding: 24px 16px;
+    }
+
+    .modern-doc-reader .m-comment {
+        padding: 0 16px;
+    }
+
+    .modern-doc-reader .article-head h1 {
+        font-size: 24px;
+    }
+
+    .modern-doc-reader .manual-head .manual-menu {
+        display: none;
+    }
+}
+
+.btn-success {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+/********** Modern Modal Styles **********/
+.modern-doc-reader.modal-content {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    overflow: hidden;
+    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modern-doc-reader.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 200% 0; }
+    50% { background-position: -200% 0; }
+}
+
+.modern-doc-reader.modal-content .modal-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: none;
+    padding: 24px 28px;
+    position: relative;
+}
+
+.modern-doc-reader.modal-content .modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+}
+
+.modern-doc-reader.modal-content .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #262626;
+    letter-spacing: 0.3px;
+}
+
+.modern-doc-reader.modal-content .close {
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.modern-doc-reader.modal-content .close:hover {
+    opacity: 1;
+    background: #ff6b6b;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.modern-doc-reader.modal-content .modal-body {
+    padding: 32px 28px;
+    background: #ffffff;
+}
+
+.modern-doc-reader.modal-content .modal-body img {
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.modern-doc-reader.modal-content .modal-body img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.modern-doc-reader.modal-content .form-group {
+    margin-bottom: 0;
+}
+
+.modern-doc-reader.modal-content .form-group label {
+    font-weight: 600;
+    color: #595959;
+    font-size: 14px;
+    padding-top: 12px;
+}
+
+.modern-doc-reader.modal-content .form-control {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    padding: 14px 18px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    color: #262626;
+}
+
+.modern-doc-reader.modal-content .form-control:focus {
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+    outline: none;
+}
+
+.modern-doc-reader.modal-content .modal-footer {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: none;
+    padding: 20px 28px;
+}
+
+.modern-doc-reader.modal-content .modal-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+}
+
+.modern-doc-reader.modal-content .modal-footer .btn {
+    border-radius: 26px;
+    padding: 10px 28px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.modern-doc-reader.modal-content .modal-footer .btn-default {
+    background: white;
+    color: black;
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+    border-color: #ccc;
+}
+
+.modern-doc-reader.modal-content .modal-footer .btn-default:hover {
+    background: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+    color: white;
+    border-color: #ccc;
+}
+
+.modern-doc-reader.modal-content .row {
+    margin: 0;
+}
+
+.modern-doc-reader.modal-content .col-sm-12 {
+    padding: 0;
+}
+
+.markdown-toc-list .directory-item-active a {
+    color: #667eea;
+}

@@ -546,7 +546,7 @@ iframe.cherry-dialog-iframe {
 .manual-article.cherry-markdown .toc {
     position: fixed;
     right: 50px;
-    width: 260px;
+    width: 320px;
     font-size: 12px;
     overflow: auto;
     border: 1px solid #e8e8e8;
@@ -571,7 +571,7 @@ iframe.cherry-dialog-iframe {
     width: 100% !important;
 }
 
-@media screen and (max-width: 839px) {
+@media screen and (max-width: 980px) {
     .toc {
         display: none !important;
     }

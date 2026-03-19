@@ -14,6 +14,7 @@
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
     <script type="text/javascript">
         window.updateBookOrder = "{{urlfor "BookController.UpdateBookOrder"}}";
     </script>
@@ -21,35 +22,36 @@
 <body>
 <div class="manual-reader manual-container">
     {{template "widgets/header.tpl" .}}
+
     <div class="container manual-body">
         <div class="row">
-             <div class="manual-list">
+             <div class="manual-list modern-grid">
                 {{range $index,$item := .Lists}}
-                    <div class="list-item" data-id="{{$item.BookId}}">
-                        <dl class="manual-item-standard">
-                            <dt>
+                    <div class="list-item modern-card" data-id="{{$item.BookId}}">
+                        <div class="card-wrapper">
+                            <div class="card-cover">
                                 <a href="{{urlfor "DocumentController.Index" ":key" $item.Identify}}" title="{{$item.BookName}}-{{$item.CreateName}}">
-                                    <img src="{{cdnimg $item.Cover}}" class="cover" alt="{{$item.BookName}}-{{$item.CreateName}}" onerror="this.src='{{cdnimg "static/images/book.jpg"}}';">
+                                    <img src="{{cdnimg $item.Cover}}" class="cover-img" alt="{{$item.BookName}}-{{$item.CreateName}}" onerror="this.src='{{cdnimg "static/images/book.jpg"}}';">
                                 </a>
-                            </dt>
-                            <dd>
-                                <a href="{{urlfor "DocumentController.Index" ":key" $item.Identify}}" class="name" title="{{$item.BookName}}-{{$item.CreateName}}">{{$item.BookName}}</a>
-                            </dd>
-                            <dd>
-                            <span class="author">
-                                <b class="text">{{i18n $.Lang "blog.author"}}</b>
-                                <b class="text">-</b>
-                                <b class="text">{{if eq $item.RealName "" }}{{$item.CreateName}}{{else}}{{$item.RealName}}{{end}}</b>
-                            </span>
-                            </dd>
-                        </dl>
+                            </div>
+                            <div class="card-content">
+                                <a href="{{urlfor "DocumentController.Index" ":key" $item.Identify}}" class="card-title" title="{{$item.BookName}}-{{$item.CreateName}}">{{$item.BookName}}</a>
+                                <div class="card-meta">
+                                    <i class="fa fa-user"></i>
+                                    <span>{{if eq $item.RealName "" }}{{$item.CreateName}}{{else}}{{$item.RealName}}{{end}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {{else}}
-                    <div class="text-center" style="height: 200px;margin: 100px;font-size: 28px;">{{i18n $.Lang "message.no_project"}}</div>
+                    <div class="empty-state">
+                        <i class="fa fa-book-open empty-icon"></i>
+                        <p class="empty-text">{{i18n $.Lang "message.no_project"}}</p>
+                    </div>
                 {{end}}
                 <div class="clearfix"></div>
             </div>
-            <nav class="pagination-container">
+            <nav class="pagination-container modern-pagination">
                 {{if gt .TotalPages 1}}
                     {{.PageHtml}}
                 {{end}}

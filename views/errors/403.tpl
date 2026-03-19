@@ -8,45 +8,41 @@
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{i18n .Lang "message.no_permission"}} - Powered by MinDoc</title>
-    <link href="{{cdncss "/static/fonts/lato-100.css"}}" rel="stylesheet" type="text/css">
-    <style type="text/css">
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            color: #B0BEC5;
-            display: table;
-            font-weight: 100;
-            font-family: 'Lato',"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
-        }
-
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
-
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
-
-        .title {
-            font-size: 72px;
-            margin-bottom: 40px;
-            color: red;
-        }
-    </style>
+    <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <div class="content">
-        <div class="title">HTTP 403 : {{i18n .Lang "message.no_permission"}}</div>
+<div class="error-page-wrapper" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+    <header class="error-page-header">
+        <div class="container">
+            <a href="{{.BaseUrl}}" class="error-brand">
+                <i class="fa fa-book"></i>
+                {{.SITE_NAME}}
+            </a>
+        </div>
+    </header>
+    <div class="error-page-container">
+        <div class="error-page-content">
+            <div class="error-code">403</div>
+            <h1 class="error-title">{{i18n .Lang "message.no_permission"}}</h1>
+            <p class="error-description"></p>
+            <div class="error-actions">
+                <a href="{{.BaseUrl}}" class="error-btn error-btn-primary">
+                    <i class="fa fa-home"></i>
+                    {{i18n .Lang "common.home"}}
+                </a>
+                <a href="javascript:history.back()" class="error-btn error-btn-secondary">
+                    <i class="fa fa-arrow-left"></i>
+                    {{i18n .Lang "common.back"}}
+                </a>
+            </div>
+        </div>
     </div>
+    <footer class="error-page-footer">
+        <p class="error-footer-text">{{i18n .Lang "doc.doc_publish_by"}} <a href="https://www.iminho.me" target="_blank">MinDoc</a></p>
+    </footer>
 </div>
 </body>
 </html>

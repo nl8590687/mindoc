@@ -1,7 +1,7 @@
 <header class="navbar navbar-static-top navbar-fixed-top manual-header" role="banner">
     <div class="container">
         <div class="navbar-header col-sm-12 col-md-9 col-lg-8">
-            <a href="{{.BaseUrl}}/" class="navbar-brand" title="{{.SITE_NAME}}">
+            <a href="{{.BaseUrl}}/" class="navbar-brand modern-brand" title="{{.SITE_NAME}}">
                 {{if .SITE_TITLE}}
                 {{.SITE_TITLE}}
                 {{else}}
@@ -9,20 +9,20 @@
                 {{end}}
             </a>
             <nav class="collapse navbar-collapse col-sm-10">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav modern-nav">
                     <li {{if eq .ControllerName "HomeController"}}class="active"{{end}}>
-                        <a href="{{urlfor "HomeController.Index" }}" title={{i18n .Lang "common.home"}}>{{i18n .Lang "common.home"}}</a>
+                        <a href="{{urlfor "HomeController.Index" }}" title={{i18n .Lang "common.home"}}><i class="fa fa-home"></i> {{i18n .Lang "common.home"}}</a>
                     </li>
                     <li {{if eq .ControllerName "BlogController"}}{{if eq  .ActionName "List" "Index"}}class="active"{{end}}{{end}}>
-                        <a href="{{urlfor "BlogController.List" }}" title={{i18n .Lang "common.blog"}}>{{i18n .Lang "common.blog"}}</a>
+                        <a href="{{urlfor "BlogController.List" }}" title={{i18n .Lang "common.blog"}}><i class="fa fa-file-text-o"></i> {{i18n .Lang "common.blog"}}</a>
                     </li>
                     <li {{if eq .ControllerName "ItemsetsController"}}class="active"{{end}}>
-                        <a href="{{urlfor "ItemsetsController.Index" }}" title={{i18n .Lang "common.project_space"}}>{{i18n .Lang "common.project_space"}}</a>
+                        <a href="{{urlfor "ItemsetsController.Index" }}" title={{i18n .Lang "common.project_space"}}><i class="fa fa-folder-open-o"></i> {{i18n .Lang "common.project_space"}}</a>
                     </li>
                 </ul>
-                <div class="searchbar pull-left visible-lg-inline-block visible-md-inline-block">
+                <div class="searchbar modern-searchbar pull-left visible-lg-inline-block visible-md-inline-block">
                     <form class="form-inline" action="{{urlfor "SearchController.IndexV2"}}" method="get">
-                        <input class="form-control" name="keyword" type="search" style="width: 230px;" placeholder="{{i18n .Lang "message.keyword_placeholder"}}" value="{{.Keyword}}">
+                        <input class="form-control" name="keyword" type="search" placeholder="{{i18n .Lang "message.keyword_placeholder"}}" value="{{.Keyword}}">
                         <button class="search-btn">
                             <i class="fa fa-search"></i>
                         </button>
@@ -67,15 +67,15 @@
             <ul class="nav navbar-nav navbar-right">
                 {{if gt .Member.MemberId 0}}
                 <li>
-                    <div class="img user-info" data-toggle="dropdown">
-                        <img src="{{cdnimg .Member.Avatar}}" onerror="this.src='{{cdnimg "/static/images/headimgurl.jpg"}}';" class="img-circle userbar-avatar" alt="{{.Member.Account}}">
+                    <div class="img user-info modern-user-info" data-toggle="dropdown">
+                        <img src="{{cdnimg .Member.Avatar}}" onerror="this.src='{{cdnimg "/static/images/headimgurl.jpg"}}';" class="img-circle userbar-avatar modern-avatar" alt="{{.Member.Account}}">
                         <div class="userbar-content">
                             <span>{{.Member.Account}}</span>
                             <div>{{i18n .Lang .Member.RoleName}}</div>
                         </div>
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     </div>
-                    <ul class="dropdown-menu user-info-dropdown" role="menu">
+                    <ul class="dropdown-menu user-info-dropdown modern-dropdown" role="menu">
                         <li>
                             <a href="{{urlfor "SettingController.Index"}}" title={{i18n .Lang "common.person_center"}}><i class="fa fa-user" aria-hidden="true"></i> {{i18n .Lang "common.person_center"}}</a>
                         </li>
@@ -90,13 +90,14 @@
                             <a href="{{urlfor "ManagerController.Index"}}" title={{i18n .Lang "common.manage"}}><i class="fa fa-university" aria-hidden="true"></i> {{i18n .Lang "common.manage"}}</a>
                         </li>
                         {{end}}
+                        <li class="divider"></li>
                         <li>
-                            <a href="{{urlfor "AccountController.Logout"}}" title={{i18n .Lang "common.logout"}}><i class="fa fa-sign-out"></i> {{i18n .Lang "common.logout"}}</a>
+                            <a href="{{urlfor "AccountController.Logout"}}" title={{i18n .Lang "common.logout"}} class="logout-link"><i class="fa fa-sign-out"></i> {{i18n .Lang "common.logout"}}</a>
                         </li>
                     </ul>
                 </li>
                 {{else}}
-                <li><a href="{{urlfor "AccountController.Login"}}" title={{i18n .Lang "common.login"}}>{{i18n .Lang "common.login"}}</a></li>
+                <li><a href="{{urlfor "AccountController.Login"}}" title={{i18n .Lang "common.login"}} class="modern-login-link">{{i18n .Lang "common.login"}}</a></li>
                 {{end}}
             </ul>
         </nav>

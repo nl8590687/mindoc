@@ -13,6 +13,7 @@
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/css/main.css" "version"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,74 +23,85 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="{{cdnjs "/static/jquery/1.12.4/jquery.min.js"}}"></script>
 </head>
-<body class="manual-container">
-<header class="navbar navbar-static-top smart-nav navbar-fixed-top manual-header" role="banner">
-    <div class="container">
-        <div class="navbar-header col-sm-12 col-md-6 col-lg-5">
-            <a href="{{.BaseUrl}}" class="navbar-brand">{{.SITE_NAME}}</a>
+<body class="manual-container login-page-body">
+<div class="login-page-wrapper">
+    <header class="navbar navbar-static-top smart-nav navbar-fixed-top manual-header" role="banner">
+        <div class="container">
+            <div class="navbar-header col-sm-12 col-md-6 col-lg-5">
+                <a href="{{.BaseUrl}}" class="navbar-brand modern-brand">{{.SITE_NAME}}</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-page-content">
+        <div class="login-hero">
+            <div class="login-hero-inner">
+                <p class="login-hero-subtitle">{{.site_description}}</p>
+            </div>
+        </div>
+
+        <div class="container manual-body">
+            <div class="row login">
+                <div class="login-body modern-login-body">
+                    <form role="form" method="post" id="registerForm">
+                    {{ .xsrfdata }}
+                        <h3 class="text-center login-title">{{i18n .Lang "common.new_account"}}</h3>
+                        <div class="form-group">
+                            <div class="input-group modern-input-group">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <input type="text" class="form-control modern-form-control" placeholder="{{i18n .Lang "common.username"}}" name="account" id="account" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group modern-input-group">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                                <input type="password" class="form-control modern-form-control" placeholder="{{i18n .Lang "common.password"}}" name="password1" id="password1" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group modern-input-group">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                                <input type="password" class="form-control modern-form-control" placeholder="{{i18n .Lang "common.confirm_password"}}" name="password2" id="password2" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group modern-input-group">
+                                <div class="input-group-addon modern-input-addon"><i class="fa fa-envelope"></i></div>
+                                <input type="email" class="form-control modern-form-control" placeholder="{{i18n .Lang "common.email"}}" name="email" id="email" autocomplete="off">
+                            </div>
+                        </div>
+
+                        <div class="form-group captcha-group">
+                            <div class="input-group modern-input-group captcha-input">
+                                <div class="input-group-addon modern-input-addon">
+                                    <i class="fa fa-check-square"></i>
+                                </div>
+                                <input type="text" name="code" id="code" class="form-control modern-form-control" maxlength="5" placeholder="{{i18n .Lang "common.captcha"}}" autocomplete="off">
+                            </div>
+                            <img id="captcha-img" class="modern-captcha-img" src="{{urlfor "AccountController.Captcha"}}" onclick="this.src='{{urlfor "AccountController.Captcha"}}?key=login&t='+(new Date()).getTime();" title="{{i18n .Lang "message.click_to_change"}}">
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" id="btnRegister" class="btn modern-login-btn" data-loading-text="{{i18n .Lang "message.processing"}}" autocomplete="off">{{i18n .Lang "common.register"}}</button>
+                        </div>
+                        {{if ne .ENABLED_REGISTER "false"}}
+                        <div class="form-group register-prompt">
+                            {{i18n .Lang "message.has_account"}} <a href="{{urlfor "AccountController.Login" }}" title="{{i18n .Lang "common.login"}}" class="register-link">{{i18n .Lang "common.login"}}</a>
+                        </div>
+                        {{end}}
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
     </div>
-</header>
-<div class="container manual-body">
-    <div class="row login">
-        <div class="login-body">
-            <form role="form" method="post" id="registerForm">
-            {{ .xsrfdata }}
-                <h3 class="text-center">{{i18n .Lang "common.new_account"}}</h3>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <input type="text" class="form-control" placeholder="{{i18n .Lang "common.username"}}" name="account" id="account" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-lock"></i>
-                        </div>
-                        <input type="password" class="form-control" placeholder="{{i18n .Lang "common.password"}}" name="password1" id="password1" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-lock"></i>
-                        </div>
-                        <input type="password" class="form-control" placeholder="{{i18n .Lang "common.confirm_password"}}" name="password2" id="password2" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon" style="padding: 6px 9px;"><i class="fa fa-envelope"></i></div>
-                        <input type="email" class="form-control" placeholder="{{i18n .Lang "common.email"}}" name="email" id="email" autocomplete="off">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group" style="float: left;width: 195px;">
-                        <div class="input-group-addon">
-                            <i class="fa fa-check-square"></i>
-                        </div>
-                        <input type="text" name="code" id="code" class="form-control" style="width: 150px" maxlength="5" placeholder="{{i18n .Lang "common.captcha"}}" autocomplete="off">&nbsp;
-                    </div>
-                    <img id="captcha-img" style="width: 140px;height: 40px;display: inline-block;float: right" src="{{urlfor "AccountController.Captcha"}}" onclick="this.src='{{urlfor "AccountController.Captcha"}}?key=login&t='+(new Date()).getTime();" title="{{i18n .Lang "message.click_to_change"}}">
-                    <div class="clearfix"></div>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" id="btnRegister" class="btn btn-success" style="width: 100%"  data-loading-text="{{i18n .Lang "message.processing"}}" autocomplete="off">{{i18n .Lang "common.register"}}</button>
-                </div>
-                {{if ne .ENABLED_REGISTER "false"}}
-                <div class="form-group">
-                    {{i18n .Lang "message.has_account"}} <a href="{{urlfor "AccountController.Login" }}" title="{{i18n .Lang "common.login"}}">{{i18n .Lang "common.login"}}</a>
-                </div>
-                {{end}}
-            </form>
-        </div>
-    </div>
-    <div class="clearfix"></div>
 </div>
 {{template "widgets/footer.tpl" .}}
 <!-- Include all compiled plugins (below), or include individual files as needed -->
