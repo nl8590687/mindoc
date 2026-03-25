@@ -15,19 +15,19 @@
     <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
 {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n .Lang "mgr.config_mgr"}}</strong>
                     </div>
                 </div>
-                <div class="box-body">
-                    <form method="post" id="configFileContainerForm" action="{{urlfor "ManagerController.Config"}}">
+                <div class="box-body modern-manager-box">
+                    <form method="post" id="configFileContainerForm" action="{{urlfor "ManagerController.Config"}}" class="modern-manager-form">
                         <div id="configFileContainer">
                             <textarea style="display:none;" name="configFileTextArea">{{.ConfigContent}}</textarea>
                         </div>

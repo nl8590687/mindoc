@@ -21,27 +21,27 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-usercenter-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-usercenter-menu">
                 <ul class="menu">
                     <li><a href="{{urlfor "SettingController.Index"}}" class="item"><i class="fa fa-sitemap" aria-hidden="true"></i> {{i18n .Lang "uc.base_info"}}</a> </li>
                     <li class="active"><a href="{{urlfor "SettingController.Password"}}" class="item"><i class="fa fa-user" aria-hidden="true"></i> {{i18n .Lang "uc.change_pwd"}}</a> </li>
                 </ul>
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-usercenter-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "uc.change_pwd"}}</strong>
                     </div>
                 </div>
-                <div class="box-body" style="width: 300px;">
-                    <form role="form" method="post" id="securityForm">
+                <div class="box-body modern-usercenter-box">
+                    <form role="form" method="post" id="securityForm" class="modern-usercenter-form">
                         <div class="form-group">
                             <label for="password1">{{i18n .Lang "uc.origin_pwd"}}</label>
-                            <input type="password" name="password1" id="password1" class="form-control disabled" placeholder="{{i18n .Lang "uc.origin_pwd"}}">
+                            <input type="password" name="password1" id="password1" class="form-control" placeholder="{{i18n .Lang "uc.origin_pwd"}}">
                         </div>
                         <div class="form-group">
                             <label for="password2">{{i18n .Lang "uc.new_pwd"}}</label>

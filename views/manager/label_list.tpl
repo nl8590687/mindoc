@@ -21,20 +21,20 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
 {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "mgr.label_mgr"}}</strong>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body modern-manager-box">
                     <div class="attach-list" id="labelList">
-                        <table class="table">
+                        <table class="table modern-manager-table">
                             <thead>
                             <tr>
                                 <th width="10%">#</th>
@@ -60,7 +60,7 @@
                             {{end}}
                             </tbody>
                         </table>
-                        <nav class="pagination-container">
+                        <nav class="modern-pagination-wrapper pagination-container">
                         {{.PageHtml}}
                         </nav>
                     </div>

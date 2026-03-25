@@ -21,24 +21,24 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
             {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "mgr.proj_list"}}</strong>
                     </div>
                 </div>
-                <div class="box-body" id="bookList">
-                    <div class="book-list">
+                <div class="box-body modern-manager-box" id="bookList">
+                    <div class="book-list modern-book-list">
 
                         {{range $index,$item := .Lists}}
-                        <div class="list-item">
-                                <div class="book-title">
-                                    <div class="pull-left">
+                        <div class="modern-project-item">
+                                <div class="modern-project-title-row">
+                                    <div class="modern-project-title">
                                         <a href="{{urlfor "ManagerController.EditBook" ":key" $item.Identify}}" title="{{i18n .Lang "mgr.edit_proj"}}" data-toggle="tooltip">
                                             {{if eq $item.PrivatelyOwned 0}}
                                             <i class="fa fa-unlock" aria-hidden="true"></i>
@@ -48,7 +48,7 @@
                                             {{$item.BookName}}
                                         </a>
                                     </div>
-                                    <div class="pull-right">
+                                    <div class="modern-project-actions">
                                         <div class="btn-group">
                                             <a href="{{urlfor "DocumentController.Edit" ":key" $item.Identify ":id" ""}}" class="btn btn-default" target="_blank">{{i18n $.Lang "common.edit"}}</a>
                                             <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +56,7 @@
                                                 <span class="sr-only">Toggle Dropdown</span>
                                             </a>
 
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu modern-dropdown-menu">
                                                 <li><a href="{{urlfor "DocumentController.Index" ":key" $item.Identify}}" target="_blank">{{i18n $.Lang "common.read"}}</a></li>
                                                 <li><a href="{{urlfor "ManagerController.EditBook" ":key" $item.Identify}}">{{i18n $.Lang "common.setting"}}</a></li>
                                                 <li><a href="javascript:deleteBook('{{$item.BookId}}');">{{i18n $.Lang "common.delete"}}</a> </li>
@@ -65,9 +65,8 @@
                                         {{/*<a href="{{urlfor "DocumentController.Index" ":key" $item.Identify}}" title="查看文档" data-toggle="tooltip" target="_blank"><i class="fa fa-eye"></i> 查看文档</a>*/}}
                                         {{/*<a href="{{urlfor "DocumentController.Edit" ":key" $item.Identify ":id" ""}}" title="编辑文档" data-toggle="tooltip" target="_blank"><i class="fa fa-edit" aria-hidden="true"></i> 编辑文档</a>*/}}
                                     </div>
-                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="desc-text">
+                                <div class="modern-project-desc">
                                     {{if eq $item.Description ""}}
                                     &nbsp;
                                     {{else}}
@@ -76,7 +75,7 @@
                                         </a>
                                     {{end}}
                                 </div>
-                                <div class="info">
+                                <div class="modern-project-meta">
                                 <span title="{{i18n $.Lang "mgr.create_time"}}" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-clock-o"></i>
                                     {{date_format $item.CreateTime "2006-01-02 15:04:05"}}
 
@@ -90,10 +89,10 @@
                                 </div>
                             </div>
                         {{else}}
-                        <div class="text-center">{{i18n .Lang "message.no_data"}}</div>
+                        <div class="modern-empty-state"><i class="fa fa-book" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>{{i18n .Lang "message.no_data"}}</div>
                         {{end}}
                     </div>
-                    <nav class="pagination-container">
+                    <nav class="modern-pagination-wrapper pagination-container">
                         {{.PageHtml}}
                     </nav>
                 </div>
@@ -107,20 +106,20 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="deleteBookForm" action="{{urlfor "ManagerController.DeleteBook"}}">
             <input type="hidden" name="book_id" value="">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">{{i18n .Lang "mgr.delete_project"}}</h4>
                 </div>
                 <div class="modal-body">
                     <span style="font-size: 14px;font-weight: 400;">{{i18n .Lang "message.confirm_delete_project"}}</span>
                     <p></p>
-                    <p class="text error-message">{{i18n .Lang "message.warning_delete_project"}}</p>
+                    <p class="text modern-text">{{i18n .Lang "message.warning_delete_project"}}</p>
                 </div>
                 <div class="modal-footer">
                     <span id="form-error-message2" class="error-message"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{i18n .Lang "common.cancel"}}</button>
-                    <button type="submit" id="btnDeleteBook" class="btn btn-primary" data-loading-text="{{i18n .Lang "message.processing"}}">{{i18n .Lang "common.confirm"}}</button>
+                    <button type="submit" id="btnDeleteBook" class="btn btn-primary" data-loading-text="{{i18n .Lang "message.processing"}}">{{i18n .Lang "common.confirm_delete"}}</button>
                 </div>
             </div>
         </form>

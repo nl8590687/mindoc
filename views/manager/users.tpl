@@ -24,13 +24,13 @@
     </style>
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n .Lang "mgr.member_mgr"}}</strong>
                         {{if eq .Member.Role 0}}
@@ -38,13 +38,13 @@
                         {{end}}
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body modern-manager-box">
                     <div class="users-list" id="userList">
                         <template v-if="lists.length <= 0">
-                            <div class="text-center">{{i18n .Lang "message.no_data"}}</div>
+                            <div class="modern-empty-state"><i class="fa fa-user-o" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>{{i18n .Lang "message.no_data"}}</div>
                         </template>
                         <template v-else>
-                            <table class="table">
+                            <table class="table modern-manager-table">
                                 <thead>
                                 <tr>
                                     <th width="80">ID</th>
@@ -75,7 +75,7 @@
                                             <button type="button" class="btn btn-default btn-sm"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 ${item.role_name}
                                                 <span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu modern-dropdown-menu">
                                                 <li><a href="javascript:;" @click="setMemberRole(item.member_id,1)">{{i18n $.Lang "uc.admin"}}</a> </li>
                                                 <li><a href="javascript:;" @click="setMemberRole(item.member_id,2)">{{i18n $.Lang "uc.user"}}</a> </li>
                                                 <li><a href="javascript:;" @click="setMemberRole(item.member_id,3)">{{i18n $.Lang "uc.read_usr"}}</a> </li>
@@ -116,7 +116,7 @@
                                 </tbody>
                             </table>
                         </template>
-                        <nav class="pagination-container">
+                        <nav class="modern-pagination-wrapper pagination-container">
                             {{.PageHtml}}
                         </nav>
                     </div>
@@ -130,9 +130,9 @@
 <div class="modal fade" id="addMemberDialogModal" tabindex="-1" role="dialog" aria-labelledby="addMemberDialogModalLabel">
     <div class="modal-dialog" role="document">
         <form method="post" autocomplete="off" class="form-horizontal" action="{{urlfor "ManagerController.CreateMember"}}" id="addMemberDialogForm">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "uc.create_user"}}</h4>
                 </div>
                 <div class="modal-body">

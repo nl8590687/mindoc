@@ -21,11 +21,11 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-manager-menu">
                 <ul class="menu">
                     <li><a href="{{urlfor "ManagerController.Index"}}" class="item"><i class="fa fa-dashboard" aria-hidden="true"></i> 仪表盘</a> </li>
                     <li><a href="{{urlfor "ManagerController.Users" }}" class="item"><i class="fa fa-users" aria-hidden="true"></i> 用户管理</a> </li>
@@ -35,17 +35,17 @@
                 </ul>
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title">评论管理</strong>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body modern-manager-box">
 
                 </div>
             </div>
         </div>
-    </div>
+        </div>
 </div>
 <script src="/static/jquery/1.12.4/jquery.min.js"></script>
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>

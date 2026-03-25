@@ -19,13 +19,13 @@
     <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n .Lang "blog.project_setting"}}</strong>
                         <button type="button"  class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#transferBookModal">{{i18n .Lang "blog.handover_project"}}</button>
@@ -37,9 +37,9 @@
                         <button type="button"  class="btn btn-danger btn-sm pull-right" style="margin-right: 5px;" data-toggle="modal" data-target="#deleteBookModal">{{i18n .Lang "blog.delete_project"}}</button>
                     </div>
                 </div>
-                <div class="box-body" style="padding-right: 200px;">
+                <div class="box-body modern-manager-box" style="padding-right: 200px;">
                     <div class="form-left">
-                        <form method="post" id="bookEditForm" action="{{urlfor "ManagerController.EditBook" ":key" .Model.Identify}}">
+                        <form method="post" id="bookEditForm" action="{{urlfor "ManagerController.EditBook" ":key" .Model.Identify}}" class="modern-manager-form">
                             <input type="hidden" name="identify" value="{{.Model.Identify}}">
                             <div class="form-group">
                                 <label>{{i18n .Lang "mgr.proj_name"}}</label>
@@ -58,28 +58,28 @@
                             <div class="form-group">
                                 <label>{{i18n .Lang "blog.history_record_amount"}}</label>
                                 <input type="text" class="form-control" name="history_count" value="{{.Model.HistoryCount}}" placeholder="{{i18n .Lang "blog.history_record_amount"}}">
-                                <p class="text">{{i18n .Lang "message.history_record_amount_desc"}}</p>
+                                <p class="text modern-text">{{i18n .Lang "message.history_record_amount_desc"}}</p>
                             </div>
                             <div class="form-group">
                                 <label>{{i18n .Lang "blog.corp_id"}}</label>
                                 <input type="text" class="form-control" name="publisher" value="{{.Model.Publisher}}" placeholder="{{i18n $.Lang "blog.corp_id"}}">
-                                <p class="text">{{i18n .Lang "message.corp_id_desc"}}</p>
+                                <p class="text modern-text">{{i18n .Lang "message.corp_id_desc"}}</p>
                             </div>
                             <div class="form-group">
                                 <label>{{i18n .Lang "blog.project_order"}}</label>
                                 <input type="number" min="0" class="form-control" value="{{.Model.OrderIndex}}" name="order_index" placeholder="{{i18n .Lang "blog.project_order"}}">
-                                <p class="text">{{i18n .Lang "message.project_order_desc"}}</p>
+                                <p class="text modern-text">{{i18n .Lang "message.project_order_desc"}}</p>
                             </div>
                             <div class="form-group">
                                 <label>{{i18n .Lang "blog.project_desc"}}</label>
                                 <textarea rows="3" class="form-control" name="description" style="height: 90px" placeholder="{{i18n .Lang "blog.project_desc"}}">{{.Model.Description}}</textarea>
-                                <p class="text">{{i18n .Lang "message.project_desc_placeholder"}}</p>
+                                <p class="text modern-text">{{i18n .Lang "message.project_desc_placeholder"}}</p>
                             </div>
 
                             <div class="form-group">
                                 <label>{{i18n .Lang "blog.project_label"}}</label>
                                 <input type="text" class="form-control" name="label" placeholder="{{i18n .Lang "blog.project_label"}}" value="{{.Model.Label}}">
-                                <p class="text">{{i18n .Lang "message.project_label_desc"}}</p>
+                                <p class="text modern-text">{{i18n .Lang "message.project_label_desc"}}</p>
                             </div>
                             {{if eq .Model.PrivatelyOwned 1}}
                             <div class="form-group">
@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label>{{i18n $.Lang "blog.access_pass"}}</label>
                                     <input type="text" name="bPassword" id="bPassword" class="form-control" placeholder="{{i18n $.Lang "blog.access_pass"}}" value="{{.Model.BookPassword}}">
-                                    <p class="text">{{i18n $.Lang "message.access_pass_desc"}}</p>
+                                    <p class="text modern-text">{{i18n $.Lang "message.access_pass_desc"}}</p>
                                 </div>
                             {{end}}
                             <div class="form-group">
@@ -138,7 +138,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="form-right">
+                    <div class="form-right modern-usercenter-avatar">
                         <label>
                            <img src="{{.Model.Cover}}" onerror="this.src='/static/images/book.png'" alt="{{i18n .Lang "blog.cover"}}" style="max-width: 120px;border: 1px solid #999" id="headimgurl">
                         </label>
@@ -156,9 +156,9 @@
         <form method="post" action="{{urlfor "ManagerController.PrivatelyOwned" }}" id="changePrivatelyOwnedForm">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
             <input type="hidden" name="status" value="{{if eq .Model.PrivatelyOwned 0}}close{{else}}open{{end}}">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">
                         {{if eq .Model.PrivatelyOwned 0}}
                         {{i18n $.Lang "blog.make_private"}}
@@ -171,11 +171,11 @@
                     {{if eq .Model.PrivatelyOwned 0}}
                     <span style="font-size: 14px;font-weight: 400;">{{i18n $.Lang "message.confirm_into_private"}}</span>
                     <p></p>
-                    <p class="text error-message">{{i18n $.Lang "message.into_private_notice"}}</p>
+                    <p class="text modern-text">{{i18n $.Lang "message.into_private_notice"}}</p>
                     {{else}}
                     <span style="font-size: 14px;font-weight: 400;">{{i18n $.Lang "message.confirm_into_public"}}</span>
                     <p></p>
-                    <p class="text error-message">{{i18n $.Lang "message.into_public_notice"}}</p>
+                    <p class="text modern-text">{{i18n $.Lang "message.into_public_notice"}}</p>
                     {{end}}
                 </div>
                 <div class="modal-footer">
@@ -193,15 +193,15 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="deleteBookForm" action="{{urlfor "ManagerController.DeleteBook"}}">
             <input type="hidden" name="book_id" value="{{.Model.BookId}}">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">{{i18n .Lang "blog.delete_project"}}</h4>
                 </div>
                 <div class="modal-body">
                     <span style="font-size: 14px;font-weight: 400;">{{i18n .Lang "message.confirm_delete_project"}}</span>
                     <p></p>
-                    <p class="text error-message">{{i18n .Lang "message.warning_delete_project"}}</p>
+                    <p class="text modern-text">{{i18n .Lang "message.warning_delete_project"}}</p>
                 </div>
                 <div class="modal-footer">
                     <span id="form-error-message2" class="error-message"></span>
@@ -216,9 +216,9 @@
     <div class="modal-dialog" role="document">
         <form action="{{urlfor "ManagerController.Transfer"}}" method="post" id="transferBookForm">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n $.Lang "blog.handover_project"}}</h4>
                 </div>
                 <div class="modal-body">

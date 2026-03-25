@@ -21,46 +21,48 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "mgr.dashboard_mgr"}}</strong>
                     </div>
                 </div>
-                <div class="box-body manager">
-                    <a href="{{urlfor "ManagerController.Books"}}" class="dashboard-item">
-                        <span class="fa fa-book" aria-hidden="true"></span>
-                        <span class="fa-class">{{i18n .Lang "mgr.proj_amount"}}</span>
-                        <span class="fa-class">{{.Model.BookNumber}}</span>
-                    </a>
-                    <div class="dashboard-item">
-                        <span class="fa fa-file-text-o" aria-hidden="true"></span>
-                        <span class="fa-class">{{i18n .Lang "mgr.blog_amount"}}</span>
-                        <span class="fa-class">{{.Model.DocumentNumber}}</span>
+                <div class="box-body modern-manager-box">
+                    <div class="modern-manager-dashboard">
+                        <a href="{{urlfor "ManagerController.Books"}}" class="modern-manager-stat-card">
+                            <span class="fa fa-book" aria-hidden="true"></span>
+                            <span class="fa-class">{{i18n .Lang "mgr.proj_amount"}}</span>
+                            <span class="fa-class">{{.Model.BookNumber}}</span>
+                        </a>
+                        <div class="modern-manager-stat-card">
+                            <span class="fa fa-file-text-o" aria-hidden="true"></span>
+                            <span class="fa-class">{{i18n .Lang "mgr.blog_amount"}}</span>
+                            <span class="fa-class">{{.Model.DocumentNumber}}</span>
+                        </div>
+                        <a href="{{urlfor "ManagerController.Users"}}" class="modern-manager-stat-card">
+                                <span class="fa fa-users" aria-hidden="true"></span>
+                                <span class="fa-class">{{i18n .Lang "mgr.member_amount"}}</span>
+                                <span class="fa-class">{{.Model.MemberNumber}}</span>
+                        </a>
+                        <!--
+                        {{/*
+                        <div class="modern-manager-stat-card">
+                            <span class="fa fa-comments-o" aria-hidden="true"></span>
+                            <span class="fa-class">{{i18n .Lang "mgr.comment_amount"}}</span>
+                            <span class="fa-class">{{.Model.CommentNumber}}</span>
+                        </div>
+                    */}}-->
+                        <a href="{{urlfor "ManagerController.AttachList" }}" class="modern-manager-stat-card">
+                            <span class="fa fa-cloud-download" aria-hidden="true"></span>
+                            <span class="fa-class">{{i18n .Lang "mgr.attachment_amount"}}</span>
+                            <span class="fa-class">{{.Model.AttachmentNumber}}</span>
+                        </a>
                     </div>
-                    <a href="{{urlfor "ManagerController.Users"}}" class="dashboard-item">
-                            <span class="fa fa-users" aria-hidden="true"></span>
-                            <span class="fa-class">{{i18n .Lang "mgr.member_amount"}}</span>
-                            <span class="fa-class">{{.Model.MemberNumber}}</span>
-                    </a>
-                    <!--
-                    {{/*
-                    <div class="dashboard-item">
-                        <span class="fa fa-comments-o" aria-hidden="true"></span>
-                        <span class="fa-class">{{i18n .Lang "mgr.comment_amount"}}</span>
-                        <span class="fa-class">{{.Model.CommentNumber}}</span>
-                    </div>
-                */}}-->
-                    <a href="{{urlfor "ManagerController.AttachList" }}" class="dashboard-item">
-                        <span class="fa fa-cloud-download" aria-hidden="true"></span>
-                        <span class="fa-class">{{i18n .Lang "mgr.attachment_amount"}}</span>
-                        <span class="fa-class">{{.Model.AttachmentNumber}}</span>
-                    </a>
                 </div>
             </div>
         </div>

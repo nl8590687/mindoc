@@ -1,4 +1,4 @@
-<div class="page-left">
+<div class="page-left modern-manager-menu">
     <ul class="menu">
         <li{{if eq "index" .Action}} class="active"{{end}}><a href="{{urlfor "ManagerController.Index"}}" class="item"><i class="fa fa-dashboard" aria-hidden="true"></i> {{i18n .Lang "mgr.dashboard_menu"}}</a> </li>
         <li{{if eq "users" .Action}} class="active"{{end}}><a href="{{urlfor "ManagerController.Users" }}" class="item"><i class="fa fa-user" aria-hidden="true"></i> {{i18n .Lang "mgr.user_menu"}}</a> </li>

@@ -21,19 +21,19 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "mgr.attachment_mgr"}}</strong>
                     </div>
                 </div>
-                <div class="box-body">
-                <form>
+                <div class="box-body modern-manager-box">
+                <form class="modern-manager-form">
                     <div class="form-group">
                         <label>{{i18n .Lang "mgr.file_name"}}</label>
                         <input type="text" value="{{.Model.FileName}}" class="form-control input-readonly" readonly>

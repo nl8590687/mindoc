@@ -20,19 +20,19 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n .Lang "mgr.config_mgr"}}</strong>
                     </div>
                 </div>
-                <div class="box-body">
-                    <form method="post" id="gloablEditForm" action="{{urlfor "ManagerController.Setting"}}">
+                <div class="box-body modern-manager-box">
+                    <form method="post" id="gloablEditForm" action="{{urlfor "ManagerController.Setting"}}" class="modern-manager-form">
                         <div class="form-group">
                             <label>{{i18n .Lang "mgr.site_name"}}</label>
                             <input type="text" class="form-control" name="SITE_NAME" id="siteName" placeholder="{{i18n .Lang "mgr.site_name"}}" value="{{.SITE_NAME}}">
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label>{{i18n .Lang "mgr.site_desc"}}</label>
                             <textarea rows="3" class="form-control" name="site_description" style="height: 90px" placeholder="{{i18n .Lang "mgr.site_desc"}}">{{.site_description}}</textarea>
-                            <p class="text">{{i18n .Lang "mgr.site_desc_tips"}}</p>
+                            <p class="text modern-text">{{i18n .Lang "mgr.site_desc_tips"}}</p>
                         </div>
                         <div class="form-group">
                             <label>{{i18n .Lang "mgr.language"}}</label>
@@ -58,10 +58,10 @@
                             <div class="form-group">
                                 <label>{{i18n .Lang "mgr.enable_anonymous_access"}}</label>
                                 <div class="radio">
-                                    <label class="radio-inline">
+                                    <label class="radio-inline modern-radio-inline">
                                         <input type="radio" {{if eq .ENABLE_ANONYMOUS "true"}}checked{{end}} name="ENABLE_ANONYMOUS" value="true">{{i18n .Lang "mgr.enable"}}<span class="text"></span>
                                     </label>
-                                    <label class="radio-inline">
+                                    <label class="radio-inline modern-radio-inline">
                                         <input type="radio" {{if eq .ENABLE_ANONYMOUS "false"}}checked{{end}} name="ENABLE_ANONYMOUS" value="false">{{i18n .Lang "mgr.disable"}}<span class="text"></span>
                                     </label>
                                 </div>
@@ -69,10 +69,10 @@
                         <div class="form-group">
                             <label>{{i18n .Lang "mgr.enable_register"}}</label>
                             <div class="radio">
-                                <label class="radio-inline">
+                                <label class="radio-inline modern-radio-inline">
                                     <input type="radio" {{if eq .ENABLED_REGISTER "true"}}checked{{end}} name="ENABLED_REGISTER" value="true">{{i18n .Lang "mgr.enable"}}<span class="text"></span>
                                 </label>
-                                <label class="radio-inline">
+                                <label class="radio-inline modern-radio-inline">
                                     <input type="radio" {{if eq .ENABLED_REGISTER "false"}}checked{{end}} name="ENABLED_REGISTER" value="false">{{i18n .Lang "mgr.disable"}}<span class="text"></span>
                                 </label>
                             </div>
@@ -80,10 +80,10 @@
                         <div class="form-group">
                             <label>{{i18n .Lang "mgr.enable_captcha"}}</label>
                             <div class="radio">
-                                <label class="radio-inline">
+                                <label class="radio-inline modern-radio-inline">
                                     <input type="radio" {{if eq .ENABLED_CAPTCHA "true"}}checked{{end}} name="ENABLED_CAPTCHA" value="true">{{i18n .Lang "mgr.enable"}}<span class="text"></span>
                                 </label>
-                                <label class="radio-inline">
+                                <label class="radio-inline modern-radio-inline">
                                     <input type="radio" {{if eq .ENABLED_CAPTCHA "false"}}checked{{end}} name="ENABLED_CAPTCHA" value="false">{{i18n .Lang "mgr.disable"}}<span class="text"></span>
                                 </label>
                             </div>
@@ -91,10 +91,10 @@
                         <div class="form-group">
                             <label>{{i18n .Lang "mgr.enable_doc_his"}}</label>
                             <div class="radio">
-                                <label class="radio-inline">
+                                <label class="radio-inline modern-radio-inline">
                                     <input type="radio" {{if eq .ENABLE_DOCUMENT_HISTORY "true"}}checked{{end}} name="ENABLE_DOCUMENT_HISTORY" value="true">{{i18n .Lang "mgr.enable"}}<span class="text"></span>
                                 </label>
-                                <label class="radio-inline">
+                                <label class="radio-inline modern-radio-inline">
                                     <input type="radio" {{if eq .ENABLE_DOCUMENT_HISTORY "false"}}checked{{end}} name="ENABLE_DOCUMENT_HISTORY" value="false">{{i18n .Lang "mgr.disable"}}<span class="text"></span>
                                 </label>
                             </div>

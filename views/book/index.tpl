@@ -23,89 +23,81 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-myprojects-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-myprojects-menu">
                 <ul class="menu">
-                    <li {{if eq .ControllerName "BookController"}}class="active"{{end}}><a href="{{urlfor "BookController.Index"}}" class="item"><i class="fa fa-sitemap" aria-hidden="true"></i> {{i18n $.Lang "common.my_project"}}</a> </li>
-                    <li {{if eq .ControllerName "BlogController"}}class="active"{{end}}><a href="{{urlfor "BlogController.ManageList"}}" class="item"><i class="fa fa-file" aria-hidden="true"></i> {{i18n $.Lang "common.my_blog"}}</a> </li>
+                    <li {{if eq .ControllerName "BookController"}}class="active"{{end}}><a href="{{urlfor "BookController.Index"}}" class="item"><i class="fa fa-sitemap" aria-hidden="true"></i> {{i18n .Lang "common.my_project"}}</a> </li>
+                    <li {{if eq .ControllerName "BlogController"}}class="active"{{end}}><a href="{{urlfor "BlogController.ManageList"}}" class="item"><i class="fa fa-file" aria-hidden="true"></i> {{i18n .Lang "common.my_blog"}}</a> </li>
                 </ul>
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-myprojects-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n $.Lang "blog.project_list"}}</strong>
                         &nbsp;
+                        <div>
                         {{if eq .Member.Role 0 1 2 }}
-                        <button type="button" data-toggle="modal" data-target="#addBookDialogModal" class="btn btn-success btn-sm pull-right">{{i18n $.Lang "blog.add_project"}}</button>
                         <button type="button" data-toggle="modal" data-target="#importBookDialogModal" class="btn btn-primary btn-sm pull-right" style="margin-right: 5px;">{{i18n $.Lang "blog.import_project"}}</button>
+                        <button type="button" data-toggle="modal" data-target="#addBookDialogModal" class="btn btn-success btn-sm pull-right">{{i18n $.Lang "blog.add_project"}}</button>
                         {{end}}
+                        </div>
                     </div>
                 </div>
-                <div class="box-body" id="bookList">
+                <div class="box-body modern-myprojects-box" id="bookList">
                     <div class="book-list">
                         <template v-if="lists.length <= 0">
-                        <div class="text-center">{{i18n $.Lang "message.no_data"}}</div>
+                        <div class="modern-empty-state"><i class="fa fa-book" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>{{i18n $.Lang "message.no_data"}}</div>
                         </template>
                         <template v-else>
-
-                        <div class="list-item" v-for="item in lists">
-                            <div class="book-title">
-                                <div class="pull-left">
+                        <div class="modern-project-item" v-for="item in lists">
+                            <div class="modern-project-title-row">
+                                <div class="modern-project-title">
+                                    <template v-if="item.privately_owned == 0">
+                                        <i class="fa fa-unlock" aria-hidden="true"></i>
+                                    </template>
+                                    <template v-else-if="item.privately_owned == 1">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                    </template>
                                     <a :href="'{{.BaseUrl}}/book/' + item.identify + '/dashboard'" title="{{i18n $.Lang "blog.project_summary"}}" data-toggle="tooltip">
-                                       <template v-if="item.privately_owned == 0">
-                                           <i class="fa fa-unlock" aria-hidden="true"></i>
-                                       </template>
-                                       <template v-else-if="item.privately_owned == 1">
-                                           <i class="fa fa-lock" aria-hidden="true"></i>
-                                       </template>
                                         ${item.book_name}
                                     </a>
                                 </div>
-                                <div class="pull-right">
+                                <div class="modern-project-actions">
                                     <div class="btn-group">
-                                        <a  :href="'{{.BaseUrl}}/book/' + item.identify + '/dashboard'" class="btn btn-default">{{i18n $.Lang "common.setting"}}</a>
-
+                                        <a :href="'{{.BaseUrl}}/book/' + item.identify + '/dashboard'" class="btn btn-default">{{i18n $.Lang "common.setting"}}</a>
                                         <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </a>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu modern-dropdown-menu">
                                             <li><a :href="'{{urlfor "DocumentController.Index" ":key" ""}}' + item.identify" target="_blank">{{i18n $.Lang "blog.read"}}</a></li>
                                             <template v-if="item.role_id != 3">
                                             <li><a :href="'{{.BaseUrl}}/api/' + item.identify + '/edit'" target="_blank">{{i18n $.Lang "blog.edit"}}</a></li>
                                             </template>
                                             <template v-if="item.role_id == 0">
-                                            <li><a :href="'javascript:deleteBook(\''+item.identify+'\');'">{{i18n $.Lang "blog.delete"}}</a></li>
-                                            <li><a :href="'javascript:copyBook(\''+item.identify+'\');'">{{i18n $.Lang "blog.copy"}}</a></li>
+                                            <li><a :href="'javascript:deleteBook(\''+item.identify+'\');">{{i18n $.Lang "blog.delete"}}</a></li>
+                                            <li><a :href="'javascript:copyBook(\''+item.identify+'\');">{{i18n $.Lang "blog.copy"}}</a></li>
                                             </template>
                                         </ul>
-
                                     </div>
-
-                                    {{/*<a :href="'{{urlfor "DocumentController.Index" ":key" ""}}' + item.identify" title="{{i18n $.Lang "blog.view"}}" data-toggle="tooltip" target="_blank"><i class="fa fa-eye"></i> {{i18n $.Lang "blog.view"}}</a>*/}}
-                                    {{/*<template v-if="item.role_id != 3">*/}}
-                                        {{/*<a :href="'/api/' + item.identify + '/edit'" title="{{i18n $.Lang "blog.edit_doc"}}" data-toggle="tooltip" target="_blank"><i class="fa fa-edit" aria-hidden="true"></i> {{i18n $.Lang "blog.edit_doc"}}</a>*/}}
-                                    {{/*</template>*/}}
                                 </div>
-                                <div class="clearfix"></div>
                             </div>
-                            <div class="desc-text">
-                                    <template v-if="item.description === ''">
-                                        &nbsp;
-                                    </template>
-                                    <template v-else="">
-                                        <a :href="'{{.BaseUrl}}/book/' + item.identify + '/dashboard'" title="{{i18n $.Lang "blog.project_summary"}}" style="font-size: 12px;">
+                            <div class="modern-project-desc">
+                                <template v-if="item.description === ''">
+                                    &nbsp;
+                                </template>
+                                <template v-else="">
+                                    <a :href="'{{.BaseUrl}}/book/' + item.identify + '/dashboard'" title="{{i18n $.Lang "blog.project_summary"}}">
                                         ${item.description}
-                                        </a>
-                                    </template>
+                                    </a>
+                                </template>
                             </div>
-                            <div class="info">
+                            <div class="modern-project-meta">
                                 <span title="{{i18n $.Lang "blog.create_time"}}" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-clock-o"></i>
                                     ${(new Date(item.create_time)).format("yyyy-MM-dd hh:mm:ss")}
-
                                 </span>
                                 <span title="{{i18n $.Lang "blog.creator"}}" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-user"></i> ${item.create_name}</span>
                                 <span title="{{i18n $.Lang "blog.doc_amount"}}" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-pie-chart"></i> ${item.doc_count}</span>
@@ -113,14 +105,13 @@
                                 <template v-if="item.last_modify_text !== ''">
                                     <span title="{{i18n $.Lang "blog.last_edit"}}" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-pencil"></i> {{i18n $.Lang "blog.last_edit"}}: ${item.last_modify_text}</span>
                                 </template>
-
                             </div>
                         </div>
                         </template>
                     </div>
                     <template v-if="lists.length >= 0">
-                        <nav class="pagination-container">
-                            {{.PageHtml}}
+                        <nav class="modern-pagination-wrapper pagination-container">
+                        {{.PageHtml}}
                         </nav>
                     </template>
                 </div>
@@ -133,7 +124,7 @@
 <div class="modal fade" id="addBookDialogModal" tabindex="-1" role="dialog" aria-labelledby="addBookDialogModalLabel">
     <div class="modal-dialog modal-lg" role="document" style="min-width: 900px;">
         <form method="post" autocomplete="off" action="{{urlfor "BookController.Create"}}" id="addBookDialogForm" enctype="multipart/form-data">
-        <div class="modal-content">
+        <div class="modal-content modern-myprojects-modal">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">{{i18n $.Lang "blog.add_project"}}</h4>
@@ -142,8 +133,8 @@
                 <div class="form-group">
                     <div class="pull-left" style="width: 620px">
                         <div class="form-group required">
-                            <label class="text-label col-sm-2">{{i18n $.Lang "common.project_space"}}</label>
-                            <div class="col-sm-10">
+                            <label class="text-label">{{i18n $.Lang "common.project_space"}}</label>
+                            <div>
                                 <select class="js-data-example-ajax-add form-control" multiple="multiple" name="itemId" id="itemId">
                                 {{if .Item}}<option value="{{.Item.ItemId}}" selected>{{.Item.ItemName}}</option> {{end}}
                                 </select>
@@ -152,16 +143,16 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="form-group required">
-                            <label class="text-label col-sm-2">{{i18n $.Lang "blog.project_title"}}</label>
-                            <div class="col-sm-10">
+                            <label class="text-label">{{i18n $.Lang "blog.project_title"}}</label>
+                            <div>
                                 <input type="text" class="form-control" placeholder="{{i18n $.Lang "message.project_title_placeholder"}}" name="book_name" id="bookName">
                                 <p class="text">{{i18n $.Lang "message.project_title_tips"}}</p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="form-group required">
-                           <label class="text-label col-sm-2">{{i18n $.Lang "blog.project_id"}}</label>
-                            <div class="col-sm-10">
+                           <label class="text-label">{{i18n $.Lang "blog.project_id"}}</label>
+                            <div>
                                 <input type="text" class="form-control" placeholder="{{i18n $.Lang "message.project_id_placeholder"}}" name="identify" id="identify">
                                 <p class="text">{{i18n $.Lang "message.project_id_tips"}}</p>
                             </div>
@@ -171,22 +162,24 @@
                             <textarea name="description" id="description" class="form-control" placeholder="{{i18n $.Lang "message.project_desc_placeholder"}}" style="height: 90px;"></textarea>
                         </div>
                         <div class="form-group">
-                            <div class="col-lg-4">
-                                <label>
-                                    <input type="radio" name="privately_owned" value="0" checked> {{i18n $.Lang "blog.public"}}<span class="text">{{i18n $.Lang "message.project_public_desc"}}</span>
-                                </label>
-                            </div>
-                            <div class="col-lg-8">
-                                <label>
-                                    <input type="radio" name="privately_owned" value="1"> {{i18n $.Lang "blog.private"}}<span class="text">{{i18n $.Lang "message.project_private_desc"}}</span>
-                                </label>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>
+                                        <input type="radio" name="privately_owned" value="0" checked> {{i18n $.Lang "blog.public"}}<span class="text">{{i18n $.Lang "message.project_public_desc"}}</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <label>
+                                        <input type="radio" name="privately_owned" value="1"> {{i18n $.Lang "blog.private"}}<span class="text">{{i18n $.Lang "message.project_private_desc"}}</span>
+                                    </label>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <!--选择编辑器模式-->
                         <div class="form-group">
                             <label>{{i18n $.Lang "blog.text_editor"}}</label>
-                            <div class="col-lg-20">
+                            <div>
                                 <label class="radio-inline">
                                     <input type="radio" name="editor" value="markdown"> Markdown
                                 </label>
@@ -224,9 +217,9 @@
 <!--END Modal-->
 <!-- importBookDialogModal -->
 <div class="modal fade" id="importBookDialogModal" tabindex="-1" role="dialog" aria-labelledby="importBookDialogModalLabel">
-    <div class="modal-dialog" role="document" style="min-width: 900px;">
+    <div class="modal-dialog modal-lg" role="document" style="min-width: 900px;">
         <form method="post" autocomplete="off" action="{{urlfor "BookController.Import"}}" id="importBookDialogForm" enctype="multipart/form-data">
-            <div class="modal-content">
+            <div class="modal-content modern-myprojects-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">{{i18n $.Lang "blog.import_project"}}</h4>
@@ -256,15 +249,17 @@
                             <textarea name="description" id="description" class="form-control" placeholder="{{i18n $.Lang "message.project_desc_placeholder"}}" style="height: 90px;"></textarea>
                         </div>
                         <div class="form-group">
-                            <div class="col-lg-4">
-                                <label>
-                                    <input type="radio" name="privately_owned" value="0" checked> {{i18n $.Lang "blog.public"}}<span class="text">{{i18n $.Lang "message.project_public_desc"}}</span>
-                                </label>
-                            </div>
-                            <div class="col-lg-8">
-                                <label>
-                                    <input type="radio" name="privately_owned" value="1"> {{i18n $.Lang "blog.private"}}<span class="text">{{i18n $.Lang "message.project_private_desc"}}</span>
-                                </label>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>
+                                        <input type="radio" name="privately_owned" value="0" checked> {{i18n $.Lang "blog.public"}}<span class="text">{{i18n $.Lang "message.project_public_desc"}}</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <label>
+                                        <input type="radio" name="privately_owned" value="1"> {{i18n $.Lang "blog.private"}}<span class="text">{{i18n $.Lang "message.project_private_desc"}}</span>
+                                    </label>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -292,7 +287,7 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="deleteBookForm" action="{{urlfor "BookController.Delete"}}">
             <input type="hidden" name="identify" value="">
-            <div class="modal-content">
+            <div class="modal-content modern-myprojects-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">{{i18n $.Lang "blog.delete_project"}}</h4>

@@ -20,19 +20,19 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n .Lang "uc.edit_user"}}</strong>
                     </div>
                 </div>
-                <div class="box-body col-lg-6 col-sm-12">
-                    <form method="post" id="saveMemberInfoForm">
+                <div class="box-body modern-manager-box col-lg-6 col-sm-12">
+                    <form method="post" id="saveMemberInfoForm" class="modern-manager-form">
                         <div class="form-group">
                             <label>{{i18n .Lang "uc.username"}}</label>
                             <input type="text" class="form-control" name="account" disabled placeholder="{{i18n .Lang "uc.username"}}" value="{{.Model.Account}}">

@@ -23,11 +23,11 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-usercenter-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-usercenter-menu">
                 <ul class="menu">
                     <li class="active"><a href="{{urlfor "SettingController.Index"}}" class="item"><i class="fa fa-sitemap" aria-hidden="true"></i> {{i18n .Lang "uc.base_info"}}</a> </li>
                     {{if ne .Member.AuthMethod "ldap"}}
@@ -36,14 +36,14 @@
                 </ul>
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-usercenter-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "uc.base_info"}}</strong>
                     </div>
                 </div>
-                <div class="box-body" style="padding-right: 200px;">
+                <div class="box-body modern-usercenter-box">
                     <div class="form-left">
-                        <form role="form" method="post" id="memberInfoForm">
+                        <form role="form" method="post" id="memberInfoForm" class="modern-usercenter-form">
                             <div class="form-group">
                                 <label>{{i18n .Lang "uc.username"}}</label>
                                 <input type="text" class="form-control disabled" value="{{.Member.Account}}" disabled placeholder="{{i18n .Lang "uc.username"}}">
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <label class="description">{{i18n .Lang "uc.description"}}</label>
                                 <textarea class="form-control" rows="3" title="{{i18n .Lang "uc.description"}}" name="description" id="description" maxlength="500">{{.Member.Description}}</textarea>
-                                <p style="color: #999;font-size: 12px;">{{i18n .Lang "uc.description_tips"}}</p>
+                                <p class="text">{{i18n .Lang "uc.description_tips"}}</p>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success" data-loading-text="{{i18n .Lang "message.processing"}}">{{i18n .Lang "common.save"}}</button>
@@ -71,13 +71,15 @@
                             </div>
                         </form>
                     </div>
-                    <div class="form-right">
+                    <div class="form-right modern-usercenter-avatar">
                         <label>
                             <a href="#" onclick="return false;" data-toggle="modal" data-target="#upload-logo-panel">
-                                <img src="{{cdnimg .Member.Avatar}}" onerror="this.src='{{cdnimg "static/images/middle.gif"}}'" class="img-circle" alt="{{i18n .Lang "uc.avatar"}}" style="max-width: 120px;max-height: 120px;" id="headimgurl">
+                                <img src="{{cdnimg .Member.Avatar}}" onerror="this.src='{{cdnimg "static/images/middle.gif"}}'" alt="{{i18n .Lang "uc.avatar"}}" id="headimgurl">
                             </a>
                         </label>
+                        <p class="text">{{i18n .Lang "blog.click_change_cover"}}</p>
                     </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
@@ -87,7 +89,7 @@
 <!-- Start Modal -->
 <div class="modal fade" id="upload-logo-panel" tabindex="-1" role="dialog" aria-labelledby="{{i18n .Lang "uc.change_avatar"}})" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modern-settings-modal modern-upload-modal">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">{{i18n .Lang "uc.change_avatar"}}</h4>

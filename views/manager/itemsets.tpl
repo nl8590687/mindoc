@@ -15,13 +15,13 @@
     <link href="{{cdncss "/static/css/main-modern-ui.css" "version"}}" rel="stylesheet">
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
 {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "mgr.project_space_mgr"}}</strong>
                     {{if eq .Member.Role 0}}
@@ -29,9 +29,9 @@
                     {{end}}
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body modern-manager-box">
                     <div class="attach-list" id="ItemsetsList">
-                        <table class="table">
+                        <table class="table modern-manager-table">
                             <thead>
                             <tr>
                                 <th width="10%">#</th>
@@ -61,7 +61,7 @@
                             {{end}}
                             </tbody>
                         </table>
-                        <nav class="pagination-container">
+                        <nav class="modern-pagination-wrapper pagination-container">
                         {{.PageHtml}}
                         </nav>
                     </div>
@@ -75,9 +75,9 @@
 <div class="modal fade" id="addItemsetsDialogModal" tabindex="-1" role="dialog" aria-labelledby="addItemsetsDialogModalLabel">
     <div class="modal-dialog">
         <form method="post" autocomplete="off" class="form-horizontal" action="{{urlfor "ManagerController.ItemsetsEdit"}}" id="addItemsetsDialogForm">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "mgr.create_proj_space"}}</h4>
                 </div>
                 <div class="modal-body">
@@ -91,7 +91,7 @@
                         <label class="col-sm-4 control-label" for="itemKey">{{i18n .Lang "mgr.proj_space_id"}}<span class="error-message">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" name="itemKey" id="itemKey" class="form-control" placeholder="{{i18n .Lang "mgr.proj_space_id"}}" maxlength="50">
-                            <p class="text">{{i18n .Lang "message.proj_space_id_tips"}}</p>
+                            <p class="text modern-text">{{i18n .Lang "message.proj_space_id_tips"}}</p>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -110,9 +110,9 @@
     <div class="modal-dialog" role="document">
         <form method="post" autocomplete="off" class="form-horizontal" action="{{urlfor "ManagerController.ItemsetsEdit"}}" id="editItemsetsDialogForm">
             <input type="hidden" name="itemId" value="">
-            <div class="modal-content">
+            <div class="modal-content modern-manager-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n .Lang "mgr.edit_proj_space"}}</h4>
                 </div>
                 <div class="modal-body">

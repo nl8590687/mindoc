@@ -2534,3 +2534,1195 @@
         flex-wrap: wrap;
     }
 }
+
+/********** User Center (Setting) Styles **********/
+.modern-usercenter-container {
+    padding-top: 20px;
+}
+
+.modern-usercenter-menu {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: none;
+}
+
+.modern-usercenter-menu .menu {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.modern-usercenter-menu .menu li {
+    margin: 0;
+}
+
+.modern-usercenter-menu .menu .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    color: #595959;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+}
+
+.modern-usercenter-menu .menu .item:hover {
+    background: #f7f5ff;
+    color: #667eea;
+    text-decoration: none;
+}
+
+.modern-usercenter-menu .menu .item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.modern-usercenter-menu .menu li.active .item {
+    background: #667eea !important;
+    color: #ffffff;
+    position: relative;
+}
+
+.modern-usercenter-menu .menu li.active .item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: #ffffff;
+    border-radius: 0 4px 4px 0;
+}
+
+.modern-usercenter-box {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: none;
+}
+
+.modern-usercenter-box .box-head {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px 24px;
+    border: none;
+}
+
+.modern-usercenter-box .box-title {
+    color: #262626;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+
+.modern-usercenter-box .box-body {
+    padding: 32px 24px !important;
+}
+
+.modern-usercenter-form {
+    max-width: 500px;
+}
+
+.modern-usercenter-form .form-group {
+    margin-bottom: 24px;
+}
+
+.modern-usercenter-form .form-group label {
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.modern-usercenter-form .form-control {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.modern-usercenter-form .form-control:focus {
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+.modern-usercenter-form .form-control[disabled] {
+    background: #f0f0f0;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.modern-usercenter-form textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modern-usercenter-form .text {
+    color: #8c8c8c;
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+.modern-usercenter-form .btn-success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.modern-usercenter-form .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.modern-usercenter-avatar {
+    text-align: center;
+}
+
+.modern-usercenter-avatar label {
+    display: block;
+    cursor: pointer;
+}
+
+.modern-usercenter-avatar img {
+    max-width: 120px !important;
+    border-radius: 50%;
+    border: 4px solid #f0f0f0 !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modern-usercenter-avatar img:hover {
+    transform: scale(1.05);
+    border-color: #667eea !important;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.modern-usercenter-avatar .text {
+    color: #8c8c8c;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+/********** My Projects / My Blog Styles **********/
+.modern-myprojects-container {
+    padding-top: 20px;
+}
+
+.modern-myprojects-menu {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: none;
+}
+
+.modern-myprojects-menu .menu {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.modern-myprojects-menu .menu li {
+    margin: 0;
+}
+
+.modern-myprojects-menu .menu .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    color: #595959;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+}
+
+.modern-myprojects-menu .menu .item:hover {
+    background: #f7f5ff;
+    color: #667eea;
+    text-decoration: none;
+}
+
+.modern-myprojects-menu .menu .item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.modern-myprojects-menu .menu li.active .item {
+    background: #667eea !important;
+    color: #ffffff;
+    position: relative;
+}
+
+.modern-myprojects-menu .menu li.active .item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: #ffffff;
+    border-radius: 0 4px 4px 0;
+}
+
+.modern-myprojects-box {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: none;
+}
+
+.modern-myprojects-box .box-head {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px 24px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.modern-myprojects-box .box-title {
+    color: #262626;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+
+.modern-myprojects-box .box-head .btn {
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.modern-myprojects-box .box-head .btn:hover {
+    transform: translateY(-2px);
+}
+
+.modern-myprojects-box .box-head .btn-success {
+    background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3);
+}
+
+.modern-myprojects-box .box-head .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.modern-myprojects-box .box-body {
+    padding: 24px !important;
+}
+
+.modern-project-item {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.modern-project-item:hover {
+    background: #f0f0f0;
+    transform: translateX(4px);
+}
+
+.modern-project-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.modern-project-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modern-project-title a {
+    font-weight: 600;
+    color: #262626;
+    font-size: 16px;
+    transition: color 0.2s ease;
+}
+
+.modern-project-title a:hover {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.modern-project-title i {
+    color: #8c8c8c;
+}
+
+.modern-project-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.modern-project-actions .btn {
+    border-radius: 16px;
+    padding: 6px 14px;
+    font-weight: 500;
+    font-size: 12px;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.modern-project-actions .btn-default {
+    background: #ffffff;
+    color: #595959;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.modern-project-actions .btn-default:hover {
+    background: #667eea;
+    color: #ffffff;
+}
+
+.modern-project-desc {
+    color: #8c8c8c;
+    font-size: 13px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.modern-project-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.modern-project-meta span {
+    color: #8c8c8c;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.modern-project-meta i {
+    font-size: 12px;
+}
+
+.modern-blog-item {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.modern-blog-item:hover {
+    background: #f0f0f0;
+    transform: translateX(4px);
+}
+
+.modern-blog-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.modern-blog-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #262626;
+    transition: color 0.2s ease;
+}
+
+.modern-blog-title:hover {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.modern-blog-label {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.modern-blog-desc {
+    color: #595959;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.modern-blog-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.modern-blog-meta a,
+.modern-blog-meta span {
+    color: #8c8c8c;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.modern-blog-meta a:hover {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.modern-blog-meta i {
+    font-size: 14px;
+}
+
+.modern-myprojects-modal .modal-content {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    overflow: hidden;
+    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-myprojects-modal .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.modern-myprojects-modal .modal-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: none;
+    padding: 24px 28px;
+    position: relative;
+}
+
+.modern-myprojects-modal .modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+}
+
+.modern-myprojects-modal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #262626;
+    letter-spacing: 0.3px;
+}
+
+.modern-myprojects-modal .close {
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.modern-myprojects-modal .close:hover {
+    opacity: 1;
+    background: #ff6b6b;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.modern-myprojects-modal .modal-body {
+    padding: 32px 28px;
+    background: #ffffff;
+}
+
+.modern-myprojects-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.modern-myprojects-modal .form-group label {
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.modern-myprojects-modal .form-control {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.modern-myprojects-modal .form-control:focus {
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+.modern-myprojects-modal .text {
+    color: #8c8c8c;
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+.modern-myprojects-modal .radio-inline {
+    padding: 10px 18px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.modern-myprojects-modal .radio-inline:hover {
+    background: #e9ecef;
+}
+
+.modern-myprojects-modal .radio-inline input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #667eea;
+}
+
+.modern-myprojects-modal .modal-footer {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: none;
+    padding: 20px 28px;
+}
+
+.modern-myprojects-modal .modal-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+}
+
+.modern-myprojects-modal .modal-footer .btn {
+    border-radius: 26px;
+    padding: 10px 28px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.modern-myprojects-modal .modal-footer .btn-default {
+    background: white;
+    color: #262626;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8e8e8;
+}
+
+.modern-myprojects-modal .modal-footer .btn-default:hover {
+    background: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+    color: white;
+    border-color: #667eea;
+}
+
+.modern-myprojects-modal .modal-footer .btn-success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.modern-myprojects-modal .modal-footer .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/********** Manager Styles **********/
+.modern-manager-container {
+    padding-top: 20px;
+}
+
+.modern-manager-menu {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: none;
+}
+
+.modern-manager-menu .menu {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.modern-manager-menu .menu li {
+    margin: 0;
+}
+
+.modern-manager-menu .menu .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    color: #595959;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+}
+
+.modern-manager-menu .menu .item:hover {
+    background: #f7f5ff;
+    color: #667eea;
+    text-decoration: none;
+}
+
+.modern-manager-menu .menu .item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.modern-manager-menu .menu li.active .item {
+    background: #667eea !important;
+    color: #ffffff;
+    position: relative;
+}
+
+.modern-manager-menu .menu li.active .item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: #ffffff;
+    border-radius: 0 4px 4px 0;
+}
+
+.modern-manager-box {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    border: none;
+}
+
+.modern-manager-box .box-head {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px 24px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.modern-manager-box .box-title {
+    color: #262626;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+
+.modern-manager-box .box-head .btn {
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.modern-manager-box .box-head .btn:hover {
+    transform: translateY(-2px);
+}
+
+.modern-manager-box .box-head .btn-success {
+    background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(81, 207, 102, 0.3);
+}
+
+.modern-manager-box .box-head .btn-danger {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.modern-manager-box .box-body {
+    padding: 24px !important;
+}
+
+.modern-manager-table {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.modern-manager-table thead {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.modern-manager-table thead th {
+    border: none;
+    padding: 16px 16px;
+    font-weight: 600;
+    color: #262626;
+    font-size: 14px;
+}
+
+.modern-manager-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.modern-manager-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.modern-manager-table tbody td {
+    border-top: 1px solid #f0f0f0;
+    padding: 16px;
+    color: #595959;
+    vertical-align: middle;
+}
+
+.modern-manager-table .label {
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.modern-manager-table .label-success {
+    background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+}
+
+.modern-manager-table .label-danger {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+}
+
+.modern-manager-table .btn {
+    border-radius: 16px;
+    padding: 6px 14px;
+    font-weight: 500;
+    font-size: 12px;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.modern-manager-table .btn-default {
+    background: #ffffff;
+    color: #595959;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.modern-manager-table .btn-default:hover {
+    background: #667eea;
+    color: #ffffff;
+}
+
+.modern-manager-table .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+}
+
+.modern-manager-table .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.modern-manager-table .btn-success {
+    background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(81, 207, 102, 0.25);
+}
+
+.modern-manager-table .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(81, 207, 102, 0.4);
+}
+
+.modern-manager-table .btn-danger {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.25);
+}
+
+.modern-manager-table .btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.modern-manager-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.modern-manager-stat-card {
+    flex: 1;
+    min-width: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.modern-manager-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(102, 126, 234, 0.4);
+    text-decoration: none;
+}
+
+.modern-manager-stat-card:nth-child(2) {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.modern-manager-stat-card:nth-child(2):hover {
+    box-shadow: 0 16px 40px rgba(17, 153, 142, 0.4);
+}
+
+.modern-manager-stat-card:nth-child(3) {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.modern-manager-stat-card:nth-child(3):hover {
+    box-shadow: 0 16px 40px rgba(240, 147, 251, 0.4);
+}
+
+.modern-manager-stat-card:nth-child(4) {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.modern-manager-stat-card:nth-child(4):hover {
+    box-shadow: 0 16px 40px rgba(250, 112, 154, 0.4);
+}
+
+.modern-manager-stat-card i {
+    font-size: 36px;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.modern-manager-stat-card .fa-class {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.modern-manager-stat-card .fa-class:last-child {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.modern-manager-form {
+    max-width: 700px;
+}
+
+.modern-manager-form .form-group {
+    margin-bottom: 24px;
+}
+
+.modern-manager-form .form-group label {
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.modern-manager-form .form-control {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.modern-manager-form .form-control:focus {
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+.modern-manager-form textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modern-manager-form .text {
+    color: #8c8c8c;
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+.modern-manager-form .radio-inline {
+    padding: 10px 18px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.modern-manager-form .radio-inline:hover {
+    background: #e9ecef;
+}
+
+.modern-manager-form .radio-inline input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #667eea;
+}
+
+.modern-manager-form .btn-success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.modern-manager-form .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.modern-manager-modal .modal-content {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    overflow: hidden;
+    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-manager-modal .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.modern-manager-modal .modal-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: none;
+    padding: 24px 28px;
+    position: relative;
+}
+
+.modern-manager-modal .modal-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+}
+
+.modern-manager-modal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #262626;
+    letter-spacing: 0.3px;
+}
+
+.modern-manager-modal .close {
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.modern-manager-modal .close:hover {
+    opacity: 1;
+    background: #ff6b6b;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.modern-manager-modal .modal-body {
+    padding: 32px 28px;
+    background: #ffffff;
+}
+
+.modern-manager-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.modern-manager-modal .form-group label {
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.modern-manager-modal .form-control {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.modern-manager-modal .form-control:focus {
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+.modern-manager-modal .modal-footer {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: none;
+    padding: 20px 28px;
+}
+
+.modern-manager-modal .modal-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+}
+
+.modern-manager-modal .modal-footer .btn {
+    border-radius: 26px;
+    padding: 10px 28px;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.modern-manager-modal .modal-footer .btn-default {
+    background: white;
+    color: #262626;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8e8e8;
+}
+
+.modern-manager-modal .modal-footer .btn-default:hover {
+    background: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+    color: white;
+    border-color: #667eea;
+}
+
+.modern-manager-modal .modal-footer .btn-success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.modern-manager-modal .modal-footer .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+@media (max-width: 768px) {
+    .modern-manager-dashboard {
+        flex-direction: column;
+    }
+
+    .modern-manager-stat-card {
+        min-width: 100%;
+    }
+
+    .modern-project-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modern-project-actions {
+        width: 100%;
+    }
+
+    .modern-blog-meta {
+        gap: 12px;
+    }
+
+    .modern-project-meta {
+        gap: 12px;
+    }
+}

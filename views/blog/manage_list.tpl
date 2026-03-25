@@ -22,18 +22,18 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-myprojects-container">
 {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-myprojects-menu">
                 <ul class="menu">
                     <li {{if eq .ControllerName "BookController"}}class="active"{{end}}><a href="{{urlfor "BookController.Index"}}" class="item"><i class="fa fa-sitemap" aria-hidden="true"></i> {{i18n .Lang "common.my_project"}}</a> </li>
                     <li {{if eq .ControllerName "BlogController"}}class="active"{{end}}><a href="{{urlfor "BlogController.ManageList"}}" class="item"><i class="fa fa-file" aria-hidden="true"></i> {{i18n .Lang "common.my_blog"}}</a> </li>
                 </ul>
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-myprojects-box">
                     <div class="box-head">
                         <strong class="box-title">{{i18n .Lang "blog.blog_list"}}</strong>
                         &nbsp;
@@ -42,37 +42,33 @@
                         {{end}}
                     </div>
                 </div>
-                <div class="box-body" id="blogList">
-                    <div class="ui items">
+                <div class="box-body modern-myprojects-box" id="blogList">
+                    <div class="modern-blog-list">
                         {{range $index,$item := .ModelList}}
-                            <div class="item blog-item">
-                                <div class="content">
-                                    <a class="header" href="{{urlfor "BlogController.Index" ":id" $item.BlogId}}" target="_blank">
+                            <div class="modern-blog-item">
+                                <div class="modern-blog-header">
+                                    <a class="modern-blog-title" href="{{urlfor "BlogController.Index" ":id" $item.BlogId}}" target="_blank">
                                         {{if eq $item.BlogStatus "password"}}
-                                        <div class="ui teal label horizontal" data-tooltip="{{i18n $.Lang "blog.encryption"}}">{{i18n $.Lang "blog.encrypt"}}</div>
+                                        <span class="modern-blog-label" data-tooltip="{{i18n $.Lang "blog.encryption"}}">{{i18n $.Lang "blog.encrypt"}}</span>
                                         {{end}}
                                         {{$item.BlogTitle}}
                                     </a>
-                                    <div class="description">
-                                        <p class="line-clamp">{{$item.BlogExcerpt}}&nbsp;</p>
-                                    </div>
-                                    <div class="extra">
-                                        <div>
-                                            <div class="ui horizontal small list">
-                                                <div class="item"><i class="fa fa-clock-o"></i> {{date_format $item.Modified "2006-01-02 15:04:05"}}</div>
-                                                <div class="item"><a href="{{urlfor "BlogController.ManageEdit" ":id" $item.BlogId}}" title="{{i18n $.Lang "blog.edit_blog"}}" target="_blank"><i class="fa fa-edit"></i> {{i18n $.Lang "blog.edit"}}</a></div>
-                                                <div class="item"><a class="delete-btn" title="{{i18n $.Lang "blog.delete_blog"}}" data-id="{{$item.BlogId}}"><i class="fa fa-trash"></i> {{i18n $.Lang "blog.delete"}}</a></div>
-                                                <div class="item"><a href="{{urlfor "BlogController.ManageSetting" ":id" $item.BlogId}}" title="{{i18n $.Lang "blog.setting_blog"}}" class="setting-btn"><i class="fa fa-gear"></i> {{i18n $.Lang "common.setting"}}</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="modern-blog-desc">
+                                    <p class="line-clamp">{{$item.BlogExcerpt}}&nbsp;</p>
+                                </div>
+                                <div class="modern-blog-meta">
+                                    <span><i class="fa fa-clock-o"></i> {{date_format $item.Modified "2006-01-02 15:04:05"}}</span>
+                                    <a href="{{urlfor "BlogController.ManageEdit" ":id" $item.BlogId}}" title="{{i18n $.Lang "blog.edit_blog"}}" target="_blank"><i class="fa fa-edit"></i> {{i18n $.Lang "blog.edit"}}</a>
+                                    <a class="delete-btn" title="{{i18n $.Lang "blog.delete_blog"}}" data-id="{{$item.BlogId}}"><i class="fa fa-trash"></i> {{i18n $.Lang "blog.delete"}}</a>
+                                    <a href="{{urlfor "BlogController.ManageSetting" ":id" $item.BlogId}}" title="{{i18n $.Lang "blog.setting_blog"}}" class="setting-btn"><i class="fa fa-gear"></i> {{i18n $.Lang "common.setting"}}</a>
                                 </div>
                             </div>
                         {{else}}
-                        <div class="text-center">{{i18n .Lang "blog.no_blog"}}</div>
+                        <div class="modern-empty-state"><i class="fa fa-file-o" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>{{i18n .Lang "blog.no_blog"}}</div>
                         {{end}}
                     </div>
-                    <nav class="pagination-container">
+                    <nav class="modern-pagination-wrapper pagination-container">
                         {{.PageHtml}}
                     </nav>
                 </div>
@@ -88,15 +84,15 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="deleteBlogForm" action="{{urlfor "BlogController.ManageDelete"}}">
             <input type="hidden" name="blog_id" value="">
-            <div class="modal-content">
+            <div class="modal-content modern-myprojects-modal">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     <h4 class="modal-title">{{i18n .Lang "blog.delete_blog"}}</h4>
                 </div>
                 <div class="modal-body">
                     <span style="font-size: 14px;font-weight: 400;">{{i18n .Lang "message.confirm_delete_blog"}}</span>
                     <p></p>
-                    <p class="text error-message">{{i18n .Lang "message.delete_blog_tips"}}</p>
+                    <p class="text modern-text">{{i18n .Lang "message.delete_blog_tips"}}</p>
                 </div>
                 <div class="modal-footer">
                     <span id="form-error-message2" class="error-message"></span>

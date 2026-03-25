@@ -21,21 +21,21 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-manager-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
         {{template "manager/widgets.tpl" .}}
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-manager-box">
                     <div class="box-head" id="attachAll">
                         <strong class="box-title">{{i18n .Lang "mgr.attachment_mgr"}}</strong>
                         <button type="button" data-method="clean" class="btn btn-danger btn-sm" data-loading-text="{{i18n $.Lang "message.processing"}}">{{i18n $.Lang "common.clean"}}</button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body modern-manager-box">
                     <div class="attach-list" id="attachList">
-                        <table class="table">
+                        <table class="table modern-manager-table">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -65,7 +65,7 @@
                             {{end}}
                             </tbody>
                         </table>
-                        <nav class="pagination-container">
+                        <nav class="modern-pagination-wrapper pagination-container">
                             {{.PageHtml}}
                         </nav>
                     </div>
