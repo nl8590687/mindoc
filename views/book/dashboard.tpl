@@ -21,11 +21,11 @@
     <![endif]-->
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-dashboard-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-dashboard-menu">
                 <ul class="menu">
                     <li class="active"><a href="{{urlfor "BookController.Dashboard" ":key" .Model.Identify}}" class="item"><i class="fa fa-dashboard" aria-hidden="true"></i> {{i18n $.Lang "blog.summary"}}</a> </li>
                     {{if eq .Model.RoleId 0 1}}
@@ -37,7 +37,7 @@
 
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-dashboard-box">
                     <div class="box-head">
                         <strong class="box-title">
                             {{if eq .Model.PrivatelyOwned 0}}
@@ -47,55 +47,64 @@
                             {{end}}
                             {{.Model.BookName}}
                         </strong>
+                        <div>
                         {{if ne .Model.RoleId 3}}
                         <a href="{{urlfor "DocumentController.Edit" ":key" .Model.Identify ":id" ""}}" class="btn btn-default btn-sm pull-right" target="_blank"><i class="fa fa-edit" aria-hidden="true"></i> {{i18n $.Lang "blog.edit"}}</a>
                         {{end}}
                         <a href="{{urlfor "DocumentController.Index" ":key" .Model.Identify}}" class="btn btn-default btn-sm pull-right" style="margin-right: 5px;" target="_blank"><i class="fa fa-eye"></i> {{i18n $.Lang "blog.read"}}</a>
 
                         {{if eq .Model.RoleId 0 1 2}}
-                        <button class="btn btn-default btn-sm pull-right" style="margin-right: 5px;" id="btnRelease"><i class="fa fa-upload" aria-hidden="true"></i> {{i18n $.Lang "blog.publish"}}</button>
+                        <button class="btn btn-success btn-sm pull-right" style="margin-right: 5px;" id="btnRelease"><i class="fa fa-upload" aria-hidden="true"></i> {{i18n $.Lang "blog.publish"}}</button>
                         {{end}}
+                        </div>
                     </div>
                 </div>
-                <div class="box-body">
-                    <div class="dashboard">
-                        <div class="pull-left" style="width: 200px;margin-bottom: 15px;">
-                            <div class="book-image">
-                                <img src="{{cdnimg .Model.Cover}}" onerror="this.src='{{cdnimg "/static/images/book.jpg"}}'" style="border: 1px solid #666;width: 175px;">
+                <div class="box-body modern-dashboard-box">
+                    <div class="modern-dashboard-content">
+                        <div class="modern-book-cover-wrapper">
+                            <div class="modern-book-cover">
+                                <img src="{{cdnimg .Model.Cover}}" onerror="this.src='{{cdnimg "/static/images/book.jpg"}}'">
                             </div>
                         </div>
-
-                            <div class="list">
-                                <span class="title">{{i18n $.Lang "blog.creator"}}：</span>
-                                <span class="body">{{.Model.CreateName}}</span>
+                        <div class="modern-book-info">
+                            <ul class="modern-info-list">
+                                <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.creator"}}</span>
+                                    <span class="modern-info-value">{{.Model.CreateName}}</span>
+                                </li>
+                                <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.doc_amount"}}</span>
+                                    <span class="modern-info-value">{{.Model.DocCount}} {{i18n $.Lang "blog.doc_unit"}}</span>
+                                </li>
+                                <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.create_time"}}</span>
+                                    <span class="modern-info-value">{{date_format .Model.CreateTime "2006-01-02 15:04:05"}}</span>
+                                </li>
+                                <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.update_time"}}</span>
+                                    <span class="modern-info-value">{{date_format .Model.ModifyTime "2006-01-02 15:04:05"}}</span>
+                                </li>
+                                <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.project_role"}}</span>
+                                    <span class="modern-info-value">{{.Model.RoleName}}</span>
+                                </li>
+                               <!-- {{/* <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.comment_amount"}}</span>
+                                    <span class="modern-info-value">{{.Model.CommentCount}} {{i18n $.Lang "blog.comment_unit"}}</span>
+                                </li>*/}}
+                                -->
+                                <li class="modern-info-item">
+                                    <span class="modern-info-label">{{i18n $.Lang "blog.project_desc"}}</span>
+                                    <span class="modern-info-value">{{.Model.Label}}</span>
+                                </li>
+                            </ul>
+                            {{if .Description}}
+                            <div class="modern-summary-wrapper">
+                                <span class="modern-summary-label">{{i18n $.Lang "blog.summary"}}</span>
+                                <div class="modern-summary-content">{{.Description}}</div>
                             </div>
-                            <div class="list">
-                                <span class="title">{{i18n $.Lang "blog.doc_amount"}}：</span>
-                                <span class="body">{{.Model.DocCount}} {{i18n $.Lang "blog.doc_unit"}}</span>
-                            </div>
-                            <div class="list">
-                                <span class="title">{{i18n $.Lang "blog.create_time"}}：</span>
-                                <span class="body"> {{date_format .Model.CreateTime "2006-01-02 15:04:05"}} </span>
-                            </div>
-                            <div class="list">
-                                <span class="title">{{i18n $.Lang "blog.update_time"}}：</span>
-                                <span class="body"> {{date_format .Model.CreateTime "2006-01-02 15:04:05"}} </span>
-                            </div>
-                        <div class="list">
-                            <span class="title">{{i18n $.Lang "blog.project_role"}}：</span>
-                            <span class="body">{{.Model.RoleName}}</span>
+                            {{end}}
                         </div>
-                       <!-- {{/* <div class="list">
-                            <span class="title">{{i18n $.Lang "blog.comment_amount"}}：</span>
-                            <span class="body">{{.Model.CommentCount}} {{i18n $.Lang "blog.comment_unit"}}</span>
-                        </div>*/}}
-                        -->
-                    <div class="list">
-                        <span class="title">{{i18n $.Lang "blog.project_desc"}}：</span>
-                        <span class="body">{{.Model.Label}}</span>
-                    </div>
-                        <div class="summary">{{.Description}} </div>
-
                     </div>
                 </div>
             </div>

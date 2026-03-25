@@ -22,11 +22,11 @@
     </style>
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-team-container">
 {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-team-menu">
                 <ul class="menu">
                     <li><a href="{{urlfor "BookController.Dashboard" ":key" .Model.Identify}}" class="item"><i class="fa fa-dashboard" aria-hidden="true"></i> {{i18n $.Lang "blog.summary"}}</a></li>
                 {{if eq .Model.RoleId 0 1}}
@@ -38,44 +38,46 @@
 
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-team-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n $.Lang "blog.team_manage"}}</strong>
                     {{if eq .Model.RoleId 0}}
-                        <button type="button" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#addTeamDialogModal"><i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addTeamDialogModal"><i class="fa fa-user-plus" aria-hidden="true"></i>
                             {{i18n $.Lang "blog.add_team"}}
                         </button>
                     {{end}}
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body modern-team-box">
                     <div class="users-list" id="teamList">
                         <template v-if="lists.length <= 0">
-                            <div class="text-center">{{i18n $.Lang "message.no_data"}}</div>
+                            <div class="modern-empty-state"><i class="fa fa-users" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>{{i18n $.Lang "message.no_data"}}</div>
                         </template>
                         <template v-else>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>{{i18n $.Lang "blog.team_name"}}</th>
-                                    <th width="100">{{i18n $.Lang "blog.member_amount"}}</th>
-                                    <th width="180">{{i18n $.Lang "blog.join_time"}}</th>
-                                    <th align="center" width="220px">{{i18n $.Lang "common.operate"}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="item in lists">
-                                    <td>${item.team_name}</td>
-                                    <td>${item.member_count}</td>
-                                    <td>${(new Date(item.create_time)).format("yyyy-MM-dd hh:mm:ss")}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" @click="deleteTeam(item.team_id,$event)" data-loading-text="{{i18n $.Lang "common.processing"}}">{{i18n $.Lang "blog.delete"}}</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="modern-table-wrapper">
+                                <table class="table modern-table">
+                                    <thead>
+                                    <tr>
+                                        <th>{{i18n $.Lang "blog.team_name"}}</th>
+                                        <th width="120">{{i18n $.Lang "blog.member_amount"}}</th>
+                                        <th width="180">{{i18n $.Lang "blog.join_time"}}</th>
+                                        <th align="center" width="180">{{i18n $.Lang "common.operate"}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in lists">
+                                        <td>${item.team_name}</td>
+                                        <td>${item.member_count}</td>
+                                        <td>${(new Date(item.create_time)).format("yyyy-MM-dd hh:mm:ss")}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-sm" @click="deleteTeam(item.team_id,$event)" data-loading-text="{{i18n $.Lang "common.processing"}}">{{i18n $.Lang "blog.delete"}}</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </template>
-                        <nav class="pagination-container">
+                        <nav class="modern-pagination-wrapper pagination-container">
                         {{.PageHtml}}
                         </nav>
                     </div>
@@ -91,15 +93,15 @@
         <form method="post" autocomplete="off" id="addTeamDialogForm" class="form-horizontal" action="{{urlfor "BookController.TeamAdd"}}">
             <input type="hidden" name="bookId" value="{{.Model.BookId}}">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
-            <div class="modal-content">
+            <div class="modal-content modern-team-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n $.Lang "blog.add_team"}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="account">{{i18n $.Lang "blog.team_name"}}<span class="error-message">*</span></label>
-                        <div class="col-sm-9">
+                        <label class="control-label" for="account">{{i18n $.Lang "blog.team_name"}}<span class="error-message">*</span></label>
+                        <div>
                             <select type="text" name="teamId" id="teamId" class="js-data-example-ajax form-control" multiple="multiple"></select>
                         </div>
                     </div>

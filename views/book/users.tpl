@@ -16,11 +16,11 @@
 
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-team-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-team-menu">
                 <ul class="menu">
                     <li><a href="{{urlfor "BookController.Dashboard" ":key" .Model.Identify}}" class="item"><i class="fa fa-dashboard" aria-hidden="true"></i> {{i18n $.Lang "blog.summary"}}</a> </li>
                 {{if eq .Model.RoleId 0 1}}
@@ -32,27 +32,29 @@
 
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-team-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n $.Lang "blog.member_manage"}}</strong>
                         {{if eq .Model.RoleId 0 1}}
-                        <button type="button"  class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#addBookMemberDialogModal"><i class="fa fa-user-plus" aria-hidden="true"></i> {{i18n $.Lang "blog.add_member"}}</button>
+                        <button type="button"  class="btn btn-success btn-sm" data-toggle="modal" data-target="#addBookMemberDialogModal"><i class="fa fa-user-plus" aria-hidden="true"></i> {{i18n $.Lang "blog.add_member"}}</button>
                         {{end}}
                     </div>
                 </div>
-                <div class="box-body" id="userList">
-                    <div class="users-list">
+                <div class="box-body modern-team-box" id="userList">
+                    <div class="users-list modern-users-list">
                         <template v-if="lists.length <= 0">
-                            <div class="text-center">{{i18n $.Lang "message.no_data"}}</div>
+                            <div class="modern-empty-state"><i class="fa fa-user-o" style="font-size: 48px; margin-bottom: 16px; display: block;"></i>{{i18n $.Lang "message.no_data"}}</div>
                         </template>
                         <template v-else>
-                            <div class="list-item" v-for="item in lists">
-                                <img :src="item.avatar" onerror="this.src='{{cdnimg "/static/images/middle.gif"}}'" class="img-circle" width="34" height="34">
-                                <span>${item.account}</span>
-                                <span style="font-size: 12px;color: #484848" v-if="item.real_name != ''">[${item.real_name}]</span>
-                                <div class="operate">
+                            <div class="modern-user-item" v-for="item in lists">
+                                <img :src="item.avatar" onerror="this.src='{{cdnimg "/static/images/middle.gif"}}'" class="modern-user-avatar">
+                                <div class="modern-user-info">
+                                    <span class="modern-user-account">${item.account}</span>
+                                    <span class="modern-user-realname" v-if="item.real_name != ''">[${item.real_name}]</span>
+                                </div>
+                                <div class="modern-user-actions">
                                     <template v-if="item.role_id == 0">
-                                        {{i18n $.Lang "blog.creator"}}
+                                        <span class="modern-user-role creator">{{i18n $.Lang "blog.creator"}}</span>
                                     </template>
                                    <template v-else>
                                        <template v-if="(book.role_id == 1 || book.role_id == 0) && member.member_id != item.member_id">
@@ -60,7 +62,7 @@
                                                <button type="button" class="btn btn-default btn-sm"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                    ${item.role_name}
                                                    <span class="caret"></span></button>
-                                               <ul class="dropdown-menu">
+                                               <ul class="dropdown-menu modern-dropdown-menu">
                                                    <li><a href="javascript:;" @click="setBookMemberRole(item.member_id,1)">{{i18n $.Lang "blog.administrator"}}</a> </li>
                                                    <li><a href="javascript:;" @click="setBookMemberRole(item.member_id,2)">{{i18n $.Lang "blog.editor"}}</a> </li>
                                                    <li><a href="javascript:;" @click="setBookMemberRole(item.member_id,3)">{{i18n $.Lang "blog.observer"}}</a> </li>
@@ -69,15 +71,17 @@
                                            <button type="button" class="btn btn-danger btn-sm" @click="removeBookMember(item.member_id)">{{i18n $.Lang "common.remove"}}</button>
                                        </template>
                                        <template v-else>
-                                           <template v-if="item.role_id == 1">
-                                               {{i18n $.Lang "blog.administrator"}}
-                                           </template>
-                                           <template v-else-if="item.role_id == 2">
-                                               {{i18n $.Lang "blog.editor"}}
-                                           </template>
-                                           <template v-else-if="item.role_id == 3">
-                                               {{i18n $.Lang "blog.observer"}}
-                                           </template>
+                                           <span class="modern-user-role">
+                                               <template v-if="item.role_id == 1">
+                                                   {{i18n $.Lang "blog.administrator"}}
+                                               </template>
+                                               <template v-else-if="item.role_id == 2">
+                                                   {{i18n $.Lang "blog.editor"}}
+                                               </template>
+                                               <template v-else-if="item.role_id == 3">
+                                                   {{i18n $.Lang "blog.observer"}}
+                                               </template>
+                                           </span>
                                        </template>
                                    </template>
                                 </div>
@@ -85,7 +89,7 @@
                         </template>
                     </div>
                     <template v-if="lists.length >= 0">
-                       <nav class="pagination-container">
+                       <nav class="modern-pagination-wrapper pagination-container">
                         {{.PageHtml}}
                         </nav>
                     </template>
@@ -100,22 +104,22 @@
     <div class="modal-dialog modal-sm" role="document" style="width: 400px;">
         <form method="post" autocomplete="off" class="form-horizontal" action="{{urlfor "BookMemberController.AddMember"}}" id="addBookMemberDialogForm">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
-            <div class="modal-content">
+            <div class="modal-content modern-team-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n $.Lang "blog.add_member"}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{i18n $.Lang "common.account"}}</label>
-                       <div class="col-sm-10">
+                        <label class="control-label">{{i18n $.Lang "common.account"}}</label>
+                       <div>
                            {{/*<input type="text" name="account" class="form-control" placeholder="{{i18n $.Lang "common.username"}}" id="account" maxlength="50">*/}}
                            <select class="js-data-example-ajax form-control" multiple="multiple" name="account" id="account"></select>
                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">{{i18n $.Lang "common.role"}}</label>
-                        <div class="col-sm-10">
+                        <label class="control-label">{{i18n $.Lang "common.role"}}</label>
+                        <div>
                             <select name="role_id" class="form-control">
                                 <option value="1">{{i18n $.Lang "blog.administrator"}}</option>
                                 <option value="2">{{i18n $.Lang "blog.editor"}}</option>

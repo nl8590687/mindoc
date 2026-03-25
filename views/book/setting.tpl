@@ -20,11 +20,11 @@
 
 </head>
 <body>
-<div class="manual-reader">
+<div class="manual-reader modern-settings-container">
     {{template "widgets/header.tpl" .}}
     <div class="container manual-body">
         <div class="row">
-            <div class="page-left">
+            <div class="page-left modern-settings-menu">
                 <ul class="menu">
                     <li><a href="{{urlfor "BookController.Dashboard" ":key" .Model.Identify}}" class="item"><i class="fa fa-dashboard" aria-hidden="true"></i> {{i18n $.Lang "blog.summary"}}</a> </li>
                     <li><a href="{{urlfor "BookController.Users" ":key" .Model.Identify}}" class="item"><i class="fa fa-user" aria-hidden="true"></i> {{i18n $.Lang "blog.member"}}</a> </li>
@@ -34,9 +34,10 @@
 
             </div>
             <div class="page-right">
-                <div class="m-box">
+                <div class="m-box modern-settings-box">
                     <div class="box-head">
                         <strong class="box-title"> {{i18n $.Lang "blog.project_setting"}}</strong>
+                        <div>
                         {{if eq .Model.RoleId 0}}
                         <button type="button"  class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#transferBookModal">{{i18n $.Lang "blog.handover_project"}}</button>
                         {{if eq .Model.PrivatelyOwned 1}}
@@ -46,10 +47,11 @@
                         {{end}}
                         <button type="button"  class="btn btn-danger btn-sm pull-right" style="margin-right: 5px;" data-toggle="modal" data-target="#deleteBookModal">{{i18n $.Lang "blog.delete_project"}}</button>
                         {{end}}
+                        </div>
 
                     </div>
                 </div>
-                <div class="box-body" style="padding-right: 200px;">
+                <div class="box-body modern-settings-box modern-settings-form" style="padding-right: 200px;">
                     <div class="form-left">
                         <form method="post" id="bookEditForm" action="{{urlfor "BookController.SaveBook"}}">
                             <input type="hidden" name="identify" value="{{.Model.Identify}}">
@@ -189,7 +191,7 @@
                 </div>
                 </form>
             </div>
-            <div class="form-right">
+            <div class="form-right modern-settings-cover">
                 <label>
                     <a href="javascript:;" data-toggle="modal" data-target="#upload-logo-panel">
                         <img src="{{cdnimg .Model.Cover}}" onerror="this.src='{{cdnimg "/static/images/book.png"}}'" alt="{{i18n $.Lang "blog.cover"}}" style="max-width: 120px;border: 1px solid #999" id="headimgurl">
@@ -211,7 +213,7 @@
         <form method="post" action="{{urlfor "BookController.PrivatelyOwned" }}" id="changePrivatelyOwnedForm">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
             <input type="hidden" name="status" value="{{if eq .Model.PrivatelyOwned 0}}close{{else}}open{{end}}">
-            <div class="modal-content">
+            <div class="modal-content modern-settings-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">
@@ -245,7 +247,7 @@
 <!-- Start Modal -->
 <div class="modal fade" id="upload-logo-panel" tabindex="-1" role="dialog" aria-labelledby="{{i18n $.Lang "blog.change_cover"}}" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modern-settings-modal modern-upload-modal">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">{{i18n $.Lang "blog.change_cover"}}</h4>
@@ -284,7 +286,7 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="deleteBookForm" action="{{urlfor "BookController.Delete"}}">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
-            <div class="modal-content">
+            <div class="modal-content modern-settings-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">{{i18n $.Lang "blog.delete_project"}}</h4>
@@ -308,7 +310,7 @@
     <div class="modal-dialog" role="document">
         <form action="{{urlfor "BookController.Transfer"}}" method="post" id="transferBookForm">
             <input type="hidden" name="identify" value="{{.Model.Identify}}">
-            <div class="modal-content">
+            <div class="modal-content modern-settings-modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{i18n $.Lang "blog.handover_project"}}</h4>
